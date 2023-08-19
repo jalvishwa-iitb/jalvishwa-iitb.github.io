@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html oncontextmenu="return false">
+<head>
+    <title>Decision Support Tool</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .inhide {
+            display: none;
+        }
+
+        .inhide:target {
+            display: block;
+        }
+
+        .td_text{
+            font-family: sans-serif;
+            font-size: 12px; 
+            text-align: right; 
+            padding-right: 10px;
+        }
+        .inp_box{
+            font-size:12px; 
+            border-radius: 7px; 
+            border-width:thin;  
+            width: 200px; 
+            height: 27px; 
+            text-align: left; 
+            vertical-align: middle; 
+            padding-left: 10px; 
+            padding-top:0px;'
+        }
+        .btn-style{
+            width: 215px; 
+            background-color: dodgerblue;
+            color: white;
+            font-weight: bold;
+            border: none; 
+            height: 30px; 
+            border-radius: 7px; 
+            text-align: center; 
+            vertical-align: middle; 
+            padding-top: 2px;
+        }
+        .btn-style1{
+            /*width: 70px; */
+            background-color: lightgreen;
+            /*color: white;*/
+            font-weight: bold;
+            border: none; 
+            /*height: 30px; */
+            border-radius: 14px; 
+            text-align: center; 
+            vertical-align: middle; 
+            /*padding-top: 2px;*/
+        }
+        .card-header{
+        	height: 90px;
+            font-family: sans-serif;
+            align-items: center;
+            align-content: center;
+            text-align: center;
+            font-weight: bold;
+            background-color: #f7f5c3;
+            position: fixed;
+            border-bottom: 1px black solid;
+            padding: 0px;
+            color: brown;
+            padding-top: 10px;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .centered-button {
+  			display: block;
+  			margin: 0 auto;
+  		}
+
+  		.rolling-text-container {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .rolling-text {
+            white-space: nowrap;
+            animation: roll 30s linear infinite;
+        }
+
+        .rolling-text-container:hover .rolling-text {
+            animation-play-state: paused;
+        }
+
+        @keyframes roll {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            
+            padding: 5px;
+        }
+
+        th {
+            background-color: grey;
+        }
+
+        td input {
+            width: 50px;
+            text-align: center;
+        }
+        body{
+        	user-select: none;
+            margin-top: 100px;
+            margin-bottom: 30px;
+            margin-left: 20px;
+        }
+        h4{
+        	background-color: lightyellow;/*#5adbb5;/*lightgreen;*/
+        	width: 1070px;
+        	color: black;
+        	padding-top: 10px;
+        	padding-left: 50px;
+        	padding-bottom: 10px;
+        }
+    </style>
+    <div class= "card-header text-left">
+        <h3><b>Technology Selection Tool </b></h3>
+        <div class="rolling-text-container">
+        <div class="rolling-text" style="padding-top: 10px;">
+        	<b>Note:</b> Please watch the <a href = "https://www.youtube.com" target="_blank" rel="noopener noreferrer">tutorial video</a> on how to use the Technology Selection Tool before proceeding further.</p>
+        </div>
+    </div>
+    </div>
+</head>
+
+<body>
+	
+    <form>
+    	<h4><b>Select Indicators</b></h4>
+    	<table >
+    		<tr style="vertical-align: top; border-bottom: 1px solid black;
+            border-top: 1px solid black;">
+    			<td  style="width: 235px; ">
+				    <div>
+				    	<h5>1. Economic Indicators</h5>
+				        <input type="checkbox" name="indicate[]" value="Capex">Capital Cost<br/>
+				        <input type="checkbox" name="indicate[]" value="Opex">Operational Cost<br/>
+				        <input type="checkbox" name="indicate[]" value="Revenue">Revenue Cost<br/>
+				        <input type="checkbox" name="indicate[]" value="LCC">Life Cycle Cost<br/>
+				        <input type="hidden" name="num_textboxes" value="0" />
+				    </div>
+				    
+				    <div style="padding-left: 18px;">
+				        <div id="textboxes-container" ></div>
+				        <a onclick="addTextbox()" style="font-size: 20px; font-weight: bold; cursor: pointer;" >+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				    </div>
+				</td>
+				<td style="width: 275px;">
+				    <div>
+				    	<h5>2. Environmental Indicators</h5>
+				        <input type="checkbox" name="indicate[]" value="GWP">Global Warming Potential<br/>
+				        <input type="checkbox" name="indicate[]" value="EuP">Eutrophication Potential<br/>
+				        <input type="checkbox" name="indicate[]" value="EcoSer">Ecosystem Services<br/>
+				        <input type="hidden" name="num_textboxes1" value="0" />
+				    </div>
+				    
+				    <div style="padding-left: 18px;">
+				        <div id="textboxes-container1"></div>
+				        <a onclick="addTextbox1()" style="font-size: 20px; font-weight: bold; cursor: pointer;" >+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				    </div>
+	    		</td>
+	    		<td style="width: 325px;">
+				    <div>
+				    	<h5>3. Circularity Potential Indicators</h5>
+				        <input type="checkbox" name="indicate[]" value="WasRec">Wastewater recycling<br/>
+				        <input type="checkbox" name="indicate[]" value="EnePot">Energy<br/>
+				        <input type="checkbox" name="indicate[]" value="ProPot">Products (fertilizers, sludge etc)<br/>
+				        <input type="hidden" name="num_textboxes2" value="0" />
+				    </div>
+				    
+				    <div style="padding-left: 18px;">
+				        <div id="textboxes-container2"></div>
+				        <a onclick="addTextbox2()" style="font-size: 20px; font-weight: bold; cursor: pointer;" >+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				    </div>
+				</td>
+				<td style="width: 235px;">
+				    <div>
+				    	<h5>4. Social Indicators</h5>
+				        <input type="checkbox" name="indicate[]" value="SocUnskill">Unskilled manpower<br/>
+				        <input type="checkbox" name="indicate[]" value="SocAccept">Acceptability<br/>
+				        <input type="checkbox" name="indicate[]" value="SocPart">Participation<br/>
+				        <input type="hidden" name="num_textboxes3" value="0" />
+				    </div>
+				    
+				    <div style="padding-left: 18px;">
+				        <div id="textboxes-container3"></div>
+				        <a onclick="addTextbox3()" style="font-size: 20px; font-weight: bold; cursor: pointer;" >+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				    </div>
+	    		</td>
+	    	</tr>
+			<tr style="vertical-align: top; border-bottom: 1px solid black;
+            border-top: 1px solid black;">
+	    		<td>
+				    <div>
+				    	<h5>5. Resilience Indicators</h5>
+				        <input type="checkbox" name="indicate[]" value="R_reli">Reliability<br/>
+				        <input type="checkbox" name="indicate[]" value="R_dura">Durability<br/>
+				        <input type="checkbox" name="indicate[]" value="R_flex">Flexibility<br/>
+				        <input type="checkbox" name="indicate[]" value="R_repl">Replicability<br/>
+				        <input type="hidden" name="num_textboxes4" value="0" />
+				    </div>
+				    
+				    <div style="padding-left: 18px;">
+				        <div id="textboxes-container4"></div>
+				        <a onclick="addTextbox4()" style="font-size: 20px; font-weight: bold; cursor: pointer;" >+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				    </div>
+				</td>
+				<td >
+				    <div>
+				    	<h5>6. Technical Indicators</h5>
+				        <input type="checkbox" name="indicate[]" value="BOD">Biochemical Oxygen Demand<br/>
+				        <input type="checkbox" name="indicate[]" value="COD">Chemical Oxygen Demand<br/>
+				        <input type="checkbox" name="indicate[]" value="Nitro">Total Kjeldahl Nitrogen<br/>
+				        <input type="checkbox" name="indicate[]" value="Phosph">Phosphorus<br/>
+				        <input type="checkbox" name="indicate[]" value="Pathogens">Pathogens<br/>
+				        <input type="checkbox" name="indicate[]" value="Em_cont">Emerging Contaminants<br/>
+				        <input type="checkbox" name="indicate[]" value="Lan_suit">Land Requirement<br/>
+				        <input type="hidden" name="num_textboxes5" value="0" />
+				    </div>
+				    
+				    <div style="padding-left: 18px;">
+				        <div id="textboxes-container5"></div>
+				        <a onclick="addTextbox5()" style="font-size: 20px; font-weight: bold; cursor: pointer;" >+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				    </div>
+				</td>
+				<td colspan="2">
+				    <div>
+				    	<h5>Additional Indicators</h5>
+				    	<input type="hidden" name="num_textboxes6" value="0" />
+				    </div>
+				    
+				    <div style="padding-left: 18px;">
+				        <div id="textboxes-container6"></div>
+				        <a onclick="addTextbox6()" style="font-size: 20px; font-weight: bold; cursor: pointer;" >+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				    </div>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<br>
+		<h4><b>Select Scenario</b></h4>
+		<div>
+			<table>
+			    <tr style="border-bottom: 1px solid black; border-top: 1px solid black;">
+			        <td colspan="4" >
+			            <input type='radio' id='opt_criteria1' name='opt_crit' value='opt_criteria1' checked>
+			            <label for='opt_criteria1'><b>No Scenario</b></label>
+			        </td>
+			    </tr>
+			    <tr style="border-bottom: 1px solid black; border-top: 1px solid black;">
+			        <td style="width: 235px; ">
+			            <input type='radio' id='opt_criteria2' name='opt_crit' value='opt_criteria2'>
+			            <label for='opt_criteria2'><b>Scenario Parameters</b></label>
+			        </td>
+			        <td style="width: 275px; padding-left: 18px;">
+                        <label><b>Setting: </b></label><br>
+                        <select id="settingSelect" disabled style="width:230px;">
+                            <option value="A1">Urban Area</option>
+                            <option value="A2">Suburban Area</option>
+                            <option value="A3">Rural Area</option>
+                        </select>
+                    </td>
+                    <td style="width: 325px; padding-left: 18px;">
+                        <label><b>End use: </b></label><br>
+                        <select id="enduseSelect" disabled style="width:280px;">
+                            <option value="C1">To surface water body</option>
+                            <option value="C2">For Irrigation/gardening</option>
+                            <option value="C3">For Toilet Flushing</option>
+                            <option value="C4">For High End/Industrial Use</option>
+                        </select>
+                    
+			        </td>
+			    </tr>
+			</table>
+		</div>
+		<br>
+		<br>
+		<h4><b>Select Technologies</b></h4>
+		<table>
+			<tr style="vertical-align: top; border-bottom: 1px solid black; border-top: 1px solid black;">
+				<td style="width: 300px;">
+				    <div>
+				    	<h5>Mechanized Treatment</h5>
+				        <input type="checkbox" name="tech[]" value="ASP">Activated Sludge Process<br/>
+				        <input type="checkbox" name="tech[]" value="RBC">Rotating Biological Contactors<br/>
+				        <input type="checkbox" name="tech[]" value="MBR">Membrane Bio-Reactor<br/>
+				        <input type="checkbox" name="tech[]" value="MBBR">Moving Bed Bio-Reactor<br/>
+				        <input type="checkbox" name="tech[]" value="SBR">Sequencing Batch Reactor<br/>
+				        <input type="checkbox" name="tech[]" value="Ext_aeration">Extended Aeration<br/>
+				    </div>
+				</td>
+				<td style="width: 445px;">
+				    <div>
+				    	<h5>Natural Treatment</h5>
+				        <input type="checkbox" name="tech[]" value="CW_SFV">Constructed Wetlands (Surface flow vertical)<br/>
+				        <input type="checkbox" name="tech[]" value="CW_SSFV">Constructed Wetlands (Subsurface flow vertical)<br/>
+				        <input type="checkbox" name="tech[]" value="CW_DPW">Constructed Wetlands (Deep bed wetlands)<br/>
+				        <input type="checkbox" name="tech[]" value="WS_ponds">Waste Stabilization ponds<br/>
+				        <input type="checkbox" name="tech[]" value="D_ponds">Duckweed ponds<br/>
+				        <input type="hidden" name="num_technologies" value="0" />
+				    </div>
+				</td>
+				<td style="width: 325px;">
+					<h5>Other Technology</h5>
+				    <div style="padding-left: 18px;">
+				    	<div id="technology-container"></div>
+				        <input type="button" name="add_tech_button" class="btn-style1" value="Add" style="background-color: green; color: white;" onclick="addTechnology()" />
+				    </div>
+				</td>
+			</tr>
+		</table>
+	    <br>
+	    
+	    <table>
+	    	<td>
+	    		<div>
+	    			<input type="submit" name="submit_xx" class="btn-style" value="Submit" style="width:200px;"/>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div id="scrollmessage" style ="background-color: pink;">
+					Scroll down to see the matrix and make changes, if any, before generating the LCC report.
+				</div>
+			</td>
+		</table>	    
+		 <br>		
+	    <div>
+	    	<pre id="grid-container"></pre>
+	    </div>
+	    <div>
+            <input type="submit" id="submitNeoButton" name="submit_neo" class="btn-style" value="Generate Technology&#13;&#10;Assessment Report" style="height: 64px;" />
+        </div>
+        <br>
+        <pre id="newmat" style="font-size: 20px;"></pre>
+    </form>
+
+    <script>
+    	function addTextbox() {
+        	var gridContainer = document.getElementById('grid-container');
+		    gridContainer.innerHTML = ''; // Clear previous grid
+		    document.getElementById('submitNeoButton').style.display = 'none'; 
+		    var form = document.querySelector('form');
+		    var numTextboxes = form.elements['num_textboxes'].value;
+		    var textboxesContainer = document.getElementById('textboxes-container');
+		    var newTextbox = document.createElement('input');
+		    newTextbox.type = 'text';
+		    newTextbox.name = 'textbox[]';
+		    newTextbox.value = '1.' + (parseInt(numTextboxes) + 1) +' ';
+		    newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		    newTextbox.style.width = '190px';
+		    newTextbox.style.textAlign = 'left';
+		    textboxesContainer.appendChild(newTextbox);
+		    form.elements['num_textboxes'].value = parseInt(numTextboxes) + 1;
+		}
+		function addTextbox1() {
+        	var gridContainer = document.getElementById('grid-container');
+		    gridContainer.innerHTML = ''; // Clear previous grid
+		    document.getElementById('submitNeoButton').style.display = 'none'; 
+		    var form = document.querySelector('form');
+		    var numTextboxes = form.elements['num_textboxes1'].value;
+		    var textboxesContainer = document.getElementById('textboxes-container1');
+		    var newTextbox = document.createElement('input');
+		    newTextbox.type = 'text';
+		    newTextbox.name = 'textbox[]';
+		    newTextbox.value = '2.' + (parseInt(numTextboxes) + 1) + ' ';
+		    newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		    newTextbox.style.width = '230px';
+		    newTextbox.style.textAlign = 'left';
+		    textboxesContainer.appendChild(newTextbox);
+		    form.elements['num_textboxes1'].value = parseInt(numTextboxes) + 1;
+		}
+		function addTextbox2() {
+        	var gridContainer = document.getElementById('grid-container');
+		    gridContainer.innerHTML = ''; // Clear previous grid
+		    document.getElementById('submitNeoButton').style.display = 'none'; 
+		    var form = document.querySelector('form');
+		    var numTextboxes = form.elements['num_textboxes2'].value;
+		    var textboxesContainer = document.getElementById('textboxes-container2');
+		    var newTextbox = document.createElement('input');
+		    newTextbox.type = 'text';
+		    newTextbox.name = 'textbox[]';
+		    newTextbox.value = '3.' + (parseInt(numTextboxes) + 1) + ' ';
+		    newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		    newTextbox.style.width = '280px';
+		    newTextbox.style.textAlign = 'left';
+		    textboxesContainer.appendChild(newTextbox);
+		    form.elements['num_textboxes2'].value = parseInt(numTextboxes) + 1;
+		}
+		function addTextbox3() {
+        	var gridContainer = document.getElementById('grid-container');
+		    gridContainer.innerHTML = ''; // Clear previous grid
+		    document.getElementById('submitNeoButton').style.display = 'none'; 
+		    var form = document.querySelector('form');
+		    var numTextboxes = form.elements['num_textboxes3'].value;
+		    var textboxesContainer = document.getElementById('textboxes-container3');
+		    var newTextbox = document.createElement('input');
+		    newTextbox.type = 'text';
+		    newTextbox.name = 'textbox[]';
+		    newTextbox.value = '4.' + (parseInt(numTextboxes) + 1) + ' ';
+		    newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		    newTextbox.style.width = '190px';
+		    newTextbox.style.textAlign = 'left';
+		    textboxesContainer.appendChild(newTextbox);
+		    form.elements['num_textboxes3'].value = parseInt(numTextboxes) + 1;
+		}
+		function addTextbox4() {
+        	var gridContainer = document.getElementById('grid-container');
+		    gridContainer.innerHTML = ''; // Clear previous grid
+		    document.getElementById('submitNeoButton').style.display = 'none'; 
+		    var form = document.querySelector('form');
+		    var numTextboxes = form.elements['num_textboxes4'].value;
+		    var textboxesContainer = document.getElementById('textboxes-container4');
+		    var newTextbox = document.createElement('input');
+		    newTextbox.type = 'text';
+		    newTextbox.name = 'textbox[]';
+		    newTextbox.value = '5.' + (parseInt(numTextboxes) + 1) + ' ';
+		    newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		    newTextbox.style.width = '190px';
+		    newTextbox.style.textAlign = 'left';
+		    textboxesContainer.appendChild(newTextbox);
+		    form.elements['num_textboxes4'].value = parseInt(numTextboxes) + 1;
+		}
+		function addTextbox5() {
+        	var gridContainer = document.getElementById('grid-container');
+		    gridContainer.innerHTML = ''; // Clear previous grid
+		    document.getElementById('submitNeoButton').style.display = 'none'; 
+		    var form = document.querySelector('form');
+		    var numTextboxes = form.elements['num_textboxes5'].value;
+		    var textboxesContainer = document.getElementById('textboxes-container5');
+		    var newTextbox = document.createElement('input');
+		    newTextbox.type = 'text';
+		    newTextbox.name = 'textbox[]';
+		    newTextbox.value = '6.' + (parseInt(numTextboxes) + 1) + ' ';
+		    newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		    newTextbox.style.width = '230px';
+		    newTextbox.style.textAlign = 'left';
+		    textboxesContainer.appendChild(newTextbox);
+		    form.elements['num_textboxes5'].value = parseInt(numTextboxes) + 1;
+		}
+		function addTextbox6() {
+        	var gridContainer = document.getElementById('grid-container');
+		    gridContainer.innerHTML = ''; // Clear previous grid
+		    document.getElementById('submitNeoButton').style.display = 'none'; 
+		    var form = document.querySelector('form');
+		    var numTextboxes = form.elements['num_textboxes6'].value;
+		    var textboxesContainer = document.getElementById('textboxes-container6');
+		    var newTextbox = document.createElement('input');
+		    newTextbox.type = 'text';
+		    newTextbox.name = 'textbox[]';
+		    newTextbox.value = '7.' + (parseInt(numTextboxes) + 1) + ' ';
+		    newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		    newTextbox.style.width = '300px';
+		    newTextbox.style.textAlign = 'left';
+		    textboxesContainer.appendChild(newTextbox);
+		    form.elements['num_textboxes6'].value = parseInt(numTextboxes) + 1;
+		}
+		function addTechnology() {
+			var gridContainer = document.getElementById('grid-container');
+		    gridContainer.innerHTML = ''; // Clear previous grid
+		    document.getElementById('submitNeoButton').style.display = 'none'; 
+		    var form = document.querySelector('form');
+		    var numTechboxes = form.elements['num_technologies'].value;
+		    var techboxesContainer = document.getElementById('technology-container');
+		    var newTextbox = document.createElement('input');
+		    newTextbox.type = 'text';
+		    newTextbox.name = 'techbox[]';
+		    newTextbox.value = 'Tech ' + (parseInt(numTechboxes) + 1) + ' ';
+		    newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		    newTextbox.style.width = '280px';
+		    newTextbox.style.textAlign = 'left';
+		    techboxesContainer.appendChild(newTextbox);
+		    form.elements['num_technologies'].value = parseInt(numTechboxes) + 1;
+		}
+
+        document.querySelector('form').addEventListener('submit', function(event) {
+    		event.preventDefault();
+
+    		var gridContainer = document.getElementById('grid-container');
+		    gridContainer.innerHTML = ''; // Clear previous grid
+		    
+
+		    var textboxValues = Array.from(document.querySelectorAll('input[name="textbox[]"]')).map(function(textbox) {
+		        return textbox.value;
+		    });
+
+		    var selectedIndicators = Array.from(document.querySelectorAll('input[name="indicate[]"]:checked')).map(function(indicator) {
+		        return indicator.value;
+		    });
+
+		    var techboxValues = Array.from(document.querySelectorAll('input[name="techbox[]"]')).map(function(techbox) {
+		        return techbox.value;
+		    });
+
+		    var selectedTechs = Array.from(document.querySelectorAll('input[name="tech[]"]:checked')).map(function(tech) {
+		        return tech.value;
+		    });
+			
+			var list_indicators = {
+				Capex: ['Capital Cost'],
+				Opex: ['Operational Cost'],
+				Revenue: ['Revenue Cost'],
+				LCC: ['Life Cycle Cost'],
+				GWP: ['Global Warming Potential'],
+				EuP: ['Eutrophication Potential'],
+				EcoSer: ['Ecosystem Services'],
+				WasRec: ['Wastewater recycling'],
+				EnePot: ['Energy'],
+				ProPot: ['Products (fertilizers, sludge etc)'],
+				SocUnskill: ['Unskilled manpower'],
+				SocAccept: ['Acceptability'],
+				SocPart: ['Participation'],
+				R_reli: ['Reliability'],
+				R_dura: ['Durability'],
+				R_flex: ['Flexibility'],
+				R_repl: ['Replicability'],
+				BOD: ['Biochemical Oxygen Demand'],
+				COD: ['Chemical Oxygen Demand'],
+				Nitro: ['Total Kjeldahl Nitrogen'],
+				Phosph: ['Phosphorus'],
+				Pathogens: ['Pathogens'],
+				Em_cont: ['Emerging Contaminants'],
+				Lan_suit: ['Land Suitability']
+			}
+			var list_technology = {
+				ASP: ['Activated Sludge Process'],
+				RBC: ['Rotating Biological Contactors'],
+				MBR: ['Membrane Bio-Reactor'],
+				MBBR: ['Moving Bed Bio-Reactor'],
+				SBR: ['Sequencing Batch Reactor'],
+				Ext_aeration: ['Extended Aeration'],
+				CW_SFV: ['Constructed Wetlands (Surface flow vertical)'],
+				CW_SSFV: ['Constructed Wetlands (Subsurface flow vertical)'],
+				CW_DPW: ['Constructed Wetlands (Deep bed wetlands)'],
+				WS_ponds: ['Waste Stabilization ponds'],
+				D_ponds: ['Duckweed ponds']
+			}
+		    var matrixValues = {
+		        ASP: [],
+		        RBC: [],
+		        MBR: [],
+		        MBBR: [],
+		        SBR: [],
+		        Ext_aeration: [],
+		        CW_SFV: [],
+		        CW_SSFV: [],
+		        CW_DPW: [],
+		        WS_ponds: [],
+		        D_ponds: []
+		    };
+
+		    for (var j = 0; j < selectedIndicators.length; j++) {
+		        var indicator = selectedIndicators[j];
+		        var values = [];
+
+		        if (indicator === "Capex") {
+		            values = ['', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "Opex") {
+		            values = ['', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "Revenue") {
+		            values = ['', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "LCC") {
+		            values = ['', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "GWP") {
+		            values = [18.2, 10, 20, 12, 31.97, 25, -3.86, -3, -2, 3, 4];
+		        } else if (indicator === "EuP") {
+		            values = [3.76, 3, 4, 4, 1.38, 3, 3.4, 3, 3, 2, 2];
+		        } else if (indicator === "EcoSer") {
+		            values = [5, 5, 3, 3, 3, 4, 10, 10, 9, 8, 9];
+		        } else if (indicator === "WasRec") {
+		            values = [5, 4, 5, 5, 6, 5, 8, 8, 7, 9, 7];
+		        } else if (indicator === "EnePot") {
+		            values = [2, 2, 2, 2, 2, 2, 6, 6, 5, 8, 7];
+		        } else if (indicator === "ProPot") {
+		            values = [2, 1, 1, 2, 2, 1, 9, 9, 8, 7, 10];
+		        } else if (indicator === "SocUnskill") {
+		            values = [40, 50, 20, 40, 20, 30, 90, 90, 90, 90, 90];
+		        } else if (indicator === "SocAccept") {
+		            values = [7, 7, 5, 6, 4, 4, 8, 8, 7, 4, 5];
+		        } else if (indicator === "SocPart") {
+		            values = [4, 4, 4, 4, 4, 4, 6, 6, 6, 6, 6];
+		        } else if (indicator === "R_reli") {
+		            values = [9, 9, 7, 7, 5, 4, 8, 8, 8, 7, 7];
+		        } else if (indicator === "R_dura") {
+		            values = [9, 9, 7, 7, 5, 4, 8, 8, 8, 6, 7];
+		        } else if (indicator === "R_flex") {
+		            values = [9, 6, 7, 6, 5, 4, 8, 8, 8, 7, 5];
+		        } else if (indicator === "R_repl") {
+		            values = [9, 9, 7, 7, 5, 4, 8, 8, 8, 7, 7];
+		        } else if (indicator === "BOD") {
+		            values = [70, 60, 75, 60, 80, 60, 60, 65, 60, 60, 60];
+		        } else if (indicator === "COD") {
+		            values = [75, 60, 75, 70, 80, 60, 55, 65, 65, 60, 60];
+		        } else if (indicator === "Nitro") {
+		            values = [40, 40, 40, 50, 60, 40, 80, 85, 85, 70, 90];
+		        } else if (indicator === "Phosph") {
+		            values = [40, 40, 40, 50, 60, 40, 80, 85, 85, 70, 90];
+		        } else if (indicator === "Pathogens") {
+		            values = [30, 30, 30, 30, 30, 30, 80, 80, 80, 90, 85];
+		        } else if (indicator === "Em_cont") {
+		            values = [30, 30, 30, 30, 30, 30, 50, 50, 50, 40, 50];
+		        } else if (indicator === "Lan_suit") {
+		            values = [1, 1, 1, 1, 1, 1, 0.7, 0.7, 0.7, 0.6, 0.6];
+		        } 
+
+		        matrixValues.ASP.push(values[0]);
+		        matrixValues.RBC.push(values[1]);
+		        matrixValues.MBR.push(values[2]);
+		        matrixValues.MBBR.push(values[3]);
+		        matrixValues.SBR.push(values[4]);
+		        matrixValues.Ext_aeration.push(values[5]);
+		        matrixValues.CW_SFV.push(values[6]);
+		        matrixValues.CW_SSFV.push(values[7]);
+		        matrixValues.CW_DPW.push(values[8]);
+		        matrixValues.WS_ponds.push(values[9]);
+		        matrixValues.D_ponds.push(values[10]);
+		    }
+		    //--------------------------------------------------------------------------------
+		    var wtmat = {
+			    A0C0: [],
+				A1C1: [],
+				A1C2: [],
+				A1C3: [],
+				A1C4: [],
+				A2C1: [],
+				A2C2: [],
+				A2C3: [],
+				A2C4: [],
+				A3C1: [],
+				A3C2: [],
+				A3C3: [],
+				A3C4: []
+			};
+
+			for (var j = 0; j < selectedIndicators.length; j++) {
+		        var indicator = selectedIndicators[j];
+		        var values = [];
+
+		        if (indicator === "Capex") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "Opex") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "Revenue") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "LCC") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "GWP") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "EuP") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "EcoSer") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "WasRec") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "EnePot") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "ProPot") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "SocUnskill") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "SocAccept") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "SocPart") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "R_reli") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "R_dura") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "R_flex") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "R_repl") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "BOD") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "COD") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "Nitro") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "Phosph") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "Pathogens") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "Em_cont") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "Lan_suit") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } 
+
+		        wtmat.A0C0.push(values[0]);
+				wtmat.A1C1.push(values[1]);
+				wtmat.A1C2.push(values[2]);
+				wtmat.A1C3.push(values[3]);
+				wtmat.A1C4.push(values[4]);
+				wtmat.A2C1.push(values[5]);
+				wtmat.A2C2.push(values[6]);
+				wtmat.A2C3.push(values[7]);
+				wtmat.A2C4.push(values[8]);
+				wtmat.A3C1.push(values[9]);
+				wtmat.A3C2.push(values[10]);
+				wtmat.A3C3.push(values[11]);
+				wtmat.A3C4.push(values[12]);
+			}
+		    //------------------------------------------------------------------------
+		    var cbmat = {
+			    A0C0: [],
+				A1C1: [],
+				A1C2: [],
+				A1C3: [],
+				A1C4: [],
+				A2C1: [],
+				A2C2: [],
+				A2C3: [],
+				A2C4: [],
+				A3C1: [],
+				A3C2: [],
+				A3C3: [],
+				A3C4: []
+			};
+
+			for (var j = 0; j < selectedIndicators.length; j++) {
+		        var indicator = selectedIndicators[j];
+		        var values = [];
+
+		        if (indicator === "Capex") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "Opex") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "Revenue") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "LCC") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "GWP") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "EuP") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "EcoSer") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "WasRec") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "EnePot") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "ProPot") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "SocUnskill") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "SocAccept") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "SocPart") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "R_reli") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "R_dura") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "R_flex") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "R_repl") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "BOD") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "COD") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "Nitro") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "Phosph") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "Pathogens") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "Em_cont") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } else if (indicator === "Lan_suit") {
+		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		        } 
+
+		        cbmat.A0C0.push(values[0]);
+				cbmat.A1C1.push(values[1]);
+				cbmat.A1C2.push(values[2]);
+				cbmat.A1C3.push(values[3]);
+				cbmat.A1C4.push(values[4]);
+				cbmat.A2C1.push(values[5]);
+				cbmat.A2C2.push(values[6]);
+				cbmat.A2C3.push(values[7]);
+				cbmat.A2C4.push(values[8]);
+				cbmat.A3C1.push(values[9]);
+				cbmat.A3C2.push(values[10]);
+				cbmat.A3C3.push(values[11]);
+				cbmat.A3C4.push(values[12]);
+		    }
+
+		    //-----------------------------------------------------------------Criteria-------
+		    const noCriteriaRadio = document.getElementById('opt_criteria1');
+			const settingSelect = document.getElementById('settingSelect');
+			const enduseSelect = document.getElementById('enduseSelect');
+
+			if (noCriteriaRadio.checked) {
+				var selectedScenario = 'A0C0';  
+			} else {
+			    const settingValue = settingSelect.value;
+			    const enduseValue = enduseSelect.value;
+			    var selectedScenario = `${settingValue}${enduseValue}`;
+			}
+    		
+			//------------------------------------------------------------------------
+		    var table = document.createElement('table');
+		    var headerRow = document.createElement('tr');
+
+		    var row;
+		    row=0;
+		    // Create header row with indicator names
+		    var indicatorHeaders = document.createElement('th');
+		    var valueInput =document.createElement('input');
+		    valueInput.type = 'textbox';
+		    valueInput.value = 'Indicators';
+		    valueInput.name = 'fmatrix[' + row + '][]';
+		    valueInput.style.width = '200px';
+		    valueInput.disabled=true;
+		    indicatorHeaders.appendChild(valueInput);
+		    headerRow.appendChild(indicatorHeaders);
+
+		    for (var k = 0; k < selectedIndicators.length; k++) {
+		        var indicatorHeader = document.createElement('th');
+		        var valueInput = document.createElement('input');
+		        valueInput.type = 'textbox';
+		        valueInput.value = list_indicators[selectedIndicators[k]][0];
+		        valueInput.name = 'fmatrix[' + row + '][]';
+		        valueInput.style.width = '75px';
+		        valueInput.disabled=true;
+		        indicatorHeader.appendChild(valueInput);
+		        headerRow.appendChild(indicatorHeader);
+		    }
+
+		    // Create header columns for the textboxes
+		    for (var l = 0; l < textboxValues.length; l++) {
+		        var textboxHeader = document.createElement('th');
+		        var valueInput = document.createElement('input');
+		        valueInput.type='textbox';
+		        valueInput.value = textboxValues[l];
+		        valueInput.name = 'fmatrix[' + row + '][]';
+		        valueInput.style.width = '75px';
+		        valueInput.disabled=true;
+		        textboxHeader.appendChild(valueInput);
+		        headerRow.appendChild(textboxHeader);
+		    }
+
+		    table.appendChild(headerRow);
+
+		    // Create rows for each tech and populate values
+		    for (var m = 0; m < selectedTechs.length; m++) {
+		    	row=row+1;
+		        var techRow = document.createElement('tr');
+		        var techCell = document.createElement('td');
+		        techCell.style.backgroundColor = 'grey';
+		        var valueInput = document.createElement('input');
+		        valueInput.type='textbox';
+		        valueInput.value = list_technology[selectedTechs[m]][0];
+		        valueInput.name = 'fmatrix[' + row + '][]';
+		        valueInput.style.width = '200px';
+
+		        valueInput.disabled=true;
+		        techCell.appendChild(valueInput);
+		        techRow.appendChild(techCell);
+
+		        for (var n = 0; n < selectedIndicators.length; n++) {
+		            var valueCell = document.createElement('td');
+		            var valueInput = document.createElement('input');
+		            valueInput.type = 'number';
+		            valueInput.value = matrixValues[selectedTechs[m]][n];
+		            valueInput.name = 'fmatrix[' + row + '][]';
+		            valueInput.step = '0.01';
+		        	valueInput.style.width = '75px';
+		            valueCell.appendChild(valueInput);
+		            techRow.appendChild(valueCell);
+		        }
+
+		        // Add cells for the textboxes
+		        for (var p = 0; p < textboxValues.length; p++) {
+		            var textboxCell = document.createElement('td');
+		            var textboxInput = document.createElement('input');
+		            textboxInput.type = 'number';
+		            textboxInput.value = '';
+		            textboxInput.name = 'fmatrix[' + row + '][]';
+		            textboxInput.style.width = '75px';
+		            textboxInput.step = '0.01';
+		            textboxCell.appendChild(textboxInput);
+		            techRow.appendChild(textboxCell);
+		        }
+
+		        table.appendChild(techRow);
+		    }
+
+		    for (var m = 0; m < techboxValues.length; m++) {
+		    	row=row+1;
+		        var techRow = document.createElement('tr');
+		        var techCell = document.createElement('td');
+		        techCell.style.backgroundColor = 'grey';
+		        var valueInput = document.createElement('input');
+		        valueInput.type = 'textbox';
+		        valueInput.value = techboxValues[m];
+		        valueInput.name = 'fmatrix[' + row + '][]';
+		        valueInput.style.width = '200px';
+		        valueInput.disabled = true;
+		        techCell.appendChild(valueInput);
+		        techRow.appendChild(techCell);
+
+		        for (var n = 0; n < selectedIndicators.length; n++) {
+		            var valueCell = document.createElement('td');
+		            var valueInput = document.createElement('input');
+		            valueInput.type = 'number';
+		            valueInput.value = '';
+		            valueInput.name = 'fmatrix[' + row + '][]';
+		        	valueInput.style.width = '75px';
+		        	valueInput.step = '0.01';
+		            valueCell.appendChild(valueInput);
+		            techRow.appendChild(valueCell);
+		        }
+
+		        // Add cells for the textboxes
+		        for (var p = 0; p < textboxValues.length; p++) {
+		            var textboxCell = document.createElement('td');
+		            var textboxInput = document.createElement('input');
+		            textboxInput.type = 'number';
+		            textboxInput.value = '';
+		            textboxInput.name = 'fmatrix[' + row + '][]';
+		            textboxInput.style.width = '75px';
+		            textboxInput.step = '0.01';
+		            textboxCell.appendChild(textboxInput);
+		            techRow.appendChild(textboxCell);
+		        }
+
+		        table.appendChild(techRow);
+		    }
+		    for (var m = 0; m < 1; m++) {
+		    	row=row+1;
+		        var techRow = document.createElement('tr');
+		        var techCell = document.createElement('td');
+		        techCell.style.backgroundColor = 'pink';
+		        var valueInput = document.createElement('input');
+		        valueInput.type = 'textbox';
+		        valueInput.value = 'Weights';
+		        valueInput.name = 'fmatrix[' + row + '][]';
+		        valueInput.style.width = '200px';
+		        valueInput.disabled = true;
+		        techCell.appendChild(valueInput);
+		        techRow.appendChild(techCell);
+
+		        for (var n = 0; n < selectedIndicators.length; n++) {
+		            var valueCell = document.createElement('td');
+		            valueCell.style.backgroundColor = 'pink';
+		            var valueInput = document.createElement('input');
+		            valueInput.type = 'number';
+		            valueInput.value = wtmat[selectedScenario][n];
+		            valueInput.min = '0';
+		            valueInput.name = 'fmatrix[' + row + '][]';
+		        	valueInput.style.width = '75px';
+		            valueCell.appendChild(valueInput);
+		            techRow.appendChild(valueCell);
+		        }
+
+		        // Add cells for the textboxes
+		        for (var p = 0; p < textboxValues.length; p++) {
+		            var textboxCell = document.createElement('td');
+		            textboxCell.style.backgroundColor = 'pink';
+		            var textboxInput = document.createElement('input');
+		            textboxInput.type = 'number';
+		            textboxInput.value = '';
+		            textboxInput.min = '0';
+		            textboxInput.name = 'fmatrix[' + row + '][]';
+		        	textboxInput.style.width = '75px';
+		            textboxCell.appendChild(textboxInput);
+		            techRow.appendChild(textboxCell);
+		        }
+
+		        table.appendChild(techRow);
+		    }
+		    for (var m = 0; m < 1; m++) {
+		    	row=row+1;
+		        var techRow = document.createElement('tr');
+		        var techCell = document.createElement('td');
+		        techCell.style.backgroundColor = 'lightgreen';
+		        var valueInput = document.createElement('input');
+		        valueInput.type = 'textbox';
+		        valueInput.value = '1-Cost 0-Benefit';
+		        valueInput.name = 'fmatrix[' + row + '][]';
+		        valueInput.style.width = '200px';
+		        valueInput.disabled = true;
+		        techCell.appendChild(valueInput);
+		        techRow.appendChild(techCell);
+
+		        for (var n = 0; n < selectedIndicators.length; n++) {
+		            var valueCell = document.createElement('td');
+		            valueCell.style.backgroundColor = 'lightgreen';
+		            var valueInput = document.createElement('input');
+		            valueInput.type = 'number';
+		            valueInput.min = '0';
+		            valueInput.max = '1'
+		            valueInput.value = cbmat[selectedScenario][n];//'0';
+		            valueInput.name = 'fmatrix[' + row + '][]';
+		        	valueInput.style.width = '75px';
+		            valueCell.appendChild(valueInput);
+		            techRow.appendChild(valueCell);
+		        }
+
+		        // Add cells for the textboxes
+		        for (var p = 0; p < textboxValues.length; p++) {
+		            var textboxCell = document.createElement('td');
+		            textboxCell.style.backgroundColor = 'lightgreen';
+		            var textboxInput = document.createElement('input');
+		            textboxInput.type = 'number';
+		            textboxInput.min = '0';
+		            textboxInput.max='1';
+		            textboxInput.value = '';
+		            textboxInput.name = 'fmatrix[' + row + '][]';
+		        	textboxInput.style.width = '75px';
+		            textboxCell.appendChild(textboxInput);
+		            techRow.appendChild(textboxCell);
+		        }
+
+		        table.appendChild(techRow);
+		    }
+
+		    gridContainer.appendChild(table);
+		    var scrollmessage = document.getElementById('scrollmessage');
+		    scrollmessage.style.display = 'block';
+		    if(selectedIndicators.length+textboxValues.length >0 && selectedTechs.length+techboxValues.length >1){
+		    	var submitNeoButton = document.getElementById('submitNeoButton');
+            	submitNeoButton.style.display = 'block';
+        	} else {
+        		var gridContainer = document.getElementById('grid-container');
+		    		gridContainer.innerHTML = 'Minimum	one indicator and Two Technologies must be selected for Technology Assessment.';
+		    		/*gridContainer.style.backgroundColor	= '#A94064';
+		    		gridContainer.style.color = 'white';
+		    		gridContainer.style.fontWeight	= 'bold';
+		    		gridContainer.style.fontSize = '26px';*/
+        	}
+    	});
+
+		document.getElementById('submitNeoButton').addEventListener('click', function(event) {
+	    	event.preventDefault();
+	    
+		    // Retrieve the values of fmatrix inputs
+		    var fmatrixInputs = Array.from(document.querySelectorAll('input[name^="fmatrix"]'));
+		    
+		    var fmatrix = [];
+		    fmatrixInputs.forEach(function(input) {
+		    	var rowId = input.name.match(/\[(\d+)\]/)[1];
+		    	var colValue = input.value;
+		    if (!fmatrix[rowId]) {
+		      fmatrix[rowId] = [];
+		    }
+	    		fmatrix[rowId].push(colValue);
+	  		});
+
+		//----------------------------------------------------calculations--------------------
+			var mainrow = fmatrix.length;
+			var maincol = fmatrix[0].length;
+
+			//technology names
+			var t_techname = [];
+			for(var i = 0; i < mainrow - 3; i++){
+				t_techname[i] = fmatrix[i + 1][0];
+			}
+
+			//indicator names
+			var t_indi_name = [];
+			for(var j = 0; j < maincol - 1; j++){
+				t_indi_name[j] = fmatrix[0][j + 1];
+			}
+
+			//decision matrix
+			var decisionMatrix = [];
+			for(var i = 0; i < mainrow - 3; i++){
+				decisionMatrix[i] = [];
+				for(var j = 0; j < maincol - 1; j++){
+					decisionMatrix[i][j] = fmatrix[i + 1][j + 1];
+				}
+			}
+
+			//weights
+			var weights = [];
+			for(var j = 0; j < maincol - 1; j++){
+				weights[j] = fmatrix[mainrow - 2][j + 1];
+			}
+
+			//cost benefits
+			var costbenefits = [];
+			for(var j = 0; j < maincol - 1; j++){
+				costbenefits[j] = fmatrix[mainrow - 1][j + 1];
+			}
+
+			//modify the decision matrix for negative values
+			for(var j = 0; j < maincol - 1; j++){
+				var min = Infinity;
+				for(var i = 0; i < mainrow - 3; i++){
+					min=Math.min(min, decisionMatrix[i][j]);
+				}
+				if (min < 0){
+					for(var i = 0; i < mainrow - 3; i++){
+						decisionMatrix[i][j] -= min;
+					}
+				}
+			}
+
+			//normalization of weights
+			var sum_w = 0;
+			for (var j = 0; j < maincol - 1; j++){
+				sum_w += parseFloat(weights[j]);
+			}
+			for (var j = 0; j < maincol - 1; j++){
+				weights[j] = weights[j]/sum_w;
+			}
+
+			//create normalizedMatrix
+			var normalizedMatrix = [];
+			for(var i = 0; i < decisionMatrix.length; i++){
+				normalizedMatrix[i] = [];
+				for(var j = 0; j < decisionMatrix[0].length; j++){
+					normalizedMatrix[i][j] = decisionMatrix[i][j];
+				}
+			}
+
+			//normalization of decision matrix
+			var sum_d = 0;
+			for(var j = 0; j < decisionMatrix[0].length; j++){
+				sum_d = 0;
+				for(var i = 0; i < decisionMatrix.length; i++){
+					var xval = decisionMatrix[i][j];
+					var sqrval = Math.pow(xval, 2);
+					sum_d += parseFloat(sqrval);
+				}
+				var sqrtval = Math.sqrt(sum_d);
+				for(var i = 0; i < decisionMatrix.length; i++){
+					normalizedMatrix[i][j] = decisionMatrix[i][j] / sqrtval;
+				}
+			}
+
+			//normalized matrix x normalized weights
+			for(var i = 0; i < decisionMatrix.length; i++){
+				for(var j = 0; j < decisionMatrix[0].length; j++){
+					normalizedMatrix[i][j] = normalizedMatrix[i][j] * weights[j];
+				}
+			}
+
+			//min and max for ideal solutions
+			var positiveIdealSolution = [];
+			var negativeIdealSolution = [];
+
+			for (var j = 0; j < normalizedMatrix[0].length; j++){
+				var max = 0;
+				var min = Infinity;
+				for (var i = 0; i < normalizedMatrix.length; i++){
+					max = Math.max(max, normalizedMatrix[i][j]);
+					min = Math.min(min, normalizedMatrix[i][j]);
+				}
+				positiveIdealSolution[j] = max;
+				negativeIdealSolution[j] = min;
+			}
+
+			//positive and negative ideal solutions depending on cost benefits
+			for(var i=0; i < costbenefits.length; i++){
+				if(costbenefits[i]==1){
+					var tempval = positiveIdealSolution[i];
+					positiveIdealSolution[i]=negativeIdealSolution[i];
+					negativeIdealSolution[i]=tempval;
+				}
+			}
+
+			// Calculate the similarity distance
+      		var similarityDistance = [];
+      		for (var i = 0; i < normalizedMatrix.length; i++){
+      			similarityDistance[i] = [];
+      			var sumPositive = 0;
+      			var sumNegative = 0;
+      			for (var j = 0; j < normalizedMatrix[0].length; j++){
+      				var xxval = normalizedMatrix[i][j] - positiveIdealSolution[j];
+      				var xxval2 = Math.pow(xxval,2);
+      				sumPositive += parseFloat(xxval2);
+      				var yyval = normalizedMatrix[i][j] - negativeIdealSolution[j];
+      				var yyval2 = Math.pow(yyval,2);
+      				sumNegative += parseFloat(yyval2);
+      			}
+      			similarityDistance[i][0] = Math.sqrt(sumPositive);
+      			similarityDistance[i][1] = Math.sqrt(sumNegative);
+      		}
+
+      		//relative closeness
+      		var relativeCloseness = [];
+      		for (var i = 0; i < similarityDistance.length; i++){
+      			relativeCloseness[i] = similarityDistance[i][1] / (similarityDistance[i][1] + similarityDistance[i][0]);
+      		}
+
+      		// Create an array of objects with tech, value, and index
+			var rankedArray = t_techname.map(function(value, index) {
+			  return { t_techname: value, value: relativeCloseness[index], index: index };
+			});
+
+			// Sort the array in descending order based on the values
+			rankedArray.sort(function(a, b) {
+			  return b.value - a.value;
+			});
+
+			// Arrange the tech and relativeCloseness arrays based on the sorted ranks
+			var sortedTech = rankedArray.map(function(item) {
+			  return item.t_techname;
+			});
+
+			var sortedCloseness = rankedArray.map(function(item) {
+			  return item.value.toFixed(4);
+			});
+
+
+			var opt = {
+                margin: [20, 20, 20, 20],//top, left, bottom, right
+                filename: 'output.pdf',
+                image: { type: 'jpeg', quality: 1 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            // Create a container element for the PDF content
+            var container = document.createElement('div');
+
+            var tableElement = document.createElement('table');
+            var value1Row = document.createElement('tr');
+
+            var value1LabelCell = document.createElement('td');
+              
+            var image = document.createElement('img');
+            image.src = 'images/Jalvishwa_4web.jpg';
+            image.style.width ='120px';
+            //container.appendChild(image);
+            image.style.marginLeft = '50px';
+            value1LabelCell.appendChild(image);
+            value1Row.appendChild(value1LabelCell);
+            tableElement.appendChild(value1Row);
+            
+            var value1LabelCell = document.createElement('td');
+              
+            //var image = document.createElement('img');
+            var resultTextElement = document.createElement('p');
+            resultTextElement.innerHTML = '<b>JalVishwa 1.0</b><br>Decision Support Tool to select <br>an appropriate technology for wastewater treatment';
+            resultTextElement.style.fontSize = '16px';
+            resultTextElement.style.textAlign='justify';
+            //resultTextElement.style.fontWeight='bold';
+            resultTextElement.style.marginTop = '15px';
+            resultTextElement.style.marginLeft = '25px';
+            value1LabelCell.appendChild(resultTextElement);
+            value1Row.appendChild(value1LabelCell);
+            tableElement.appendChild(value1Row);
+            container.appendChild(tableElement);
+
+            var lineElement = document.createElement('hr');
+            lineElement.style.borderColor = 'red';
+            lineElement.style.borderWidth = '1px';
+            lineElement.style.borderStyle = 'solid';
+            lineElement.style.marginTop = "0";
+            lineElement.style.marginBottom = "0";
+            container.appendChild(lineElement);
+
+            var copyrightTextElement = document.createElement('p');
+            copyrightTextElement.textContent = 'Copyright \u00A9 Indian Institute of Technology Bombay, Powai, Mumbai - 400 076';
+            copyrightTextElement.style.fontWeight = 'bold';
+            copyrightTextElement.style.fontSize = '12px';
+            copyrightTextElement.style.marginBottom = "4px";
+            container.appendChild(copyrightTextElement);
+
+            var lineElement = document.createElement('hr');
+            lineElement.style.borderColor = 'red';
+            lineElement.style.borderWidth = '1px';
+            lineElement.style.borderStyle = 'solid';
+            lineElement.style.marginTop = "0";
+            lineElement.style.marginBottom = "0";
+            container.appendChild(lineElement);
+
+
+            var currentDate = new Date();
+            var formattedDate = currentDate.toLocaleDateString();
+            // Create elements to display the header
+            var headerElement = document.createElement('header');
+            var spaces = Array(17).join('\u00A0');
+            headerElement.textContent = 'JalVishwa: Technology Assessment Report' + spaces + 'Page 1 of 1' + spaces + formattedDate;// + spaces + 'IIT Bombay';
+            headerElement.style.marginTop = '4px';
+           // headerElement.style.textAlign = 'center';
+            headerElement.style.color='blue';
+            headerElement.style.fontWeight='bold';
+            container.appendChild(headerElement);
+
+            // Create a line element below the header
+            
+
+            var resultTextElement = document.createElement('p');
+            resultTextElement.textContent = '';
+            resultTextElement.style.fontSize = '14px';
+            resultTextElement.style.textAlign='justify';
+            container.appendChild(resultTextElement);
+
+            var resultTextElement = document.createElement('p');
+            resultTextElement.textContent = 'OUTPUT';
+            resultTextElement.style.fontWeight = 'bold';
+            resultTextElement.style.marginBottom = '6px';
+            container.appendChild(resultTextElement);
+
+            var lineElement = document.createElement('hr');
+            lineElement.style.borderColor = 'black';
+            lineElement.style.borderWidth = '1px';
+            lineElement.style.borderStyle = 'solid';
+            lineElement.style.marginTop = "0";
+            lineElement.style.marginBottom = "0";
+            container.appendChild(lineElement);
+
+            //-------------------------------------------------------------------------------------------------------
+            var tableElement = document.createElement('table');
+            
+            //---------------------------------------------------------lop-
+            var value1Row = document.createElement('tr');
+
+            var value1LabelCell = document.createElement('td');
+            value1LabelCell.textContent = 'Technology';
+            value1LabelCell.style.width='300px';
+            value1LabelCell.style.fontWeight = 'bold';
+            value1LabelCell.style.border = 'none';
+            value1LabelCell.style.borderBottom = '1px solid black'; 
+            value1Row.appendChild(value1LabelCell);
+
+            var value1Cell = document.createElement('td');
+            value1Cell.textContent = 'Overall Scores';
+            value1Cell.style.width = '150px';
+            value1Cell.style.fontWeight = 'bold';
+            value1Cell.style.border = 'none';
+            value1Cell.style.borderBottom = '1px solid black' ;
+            value1Row.appendChild(value1Cell);
+            tableElement.appendChild(value1Row);
+
+            var value2Cell = document.createElement('td');
+            value2Cell.textContent = 'Level of Preference';
+            value2Cell.style.width = '200px';
+            value2Cell.style.fontWeight = 'bold';
+            value2Cell.style.border = 'none';
+            value2Cell.style.borderBottom = '1px solid black'; 
+            value1Row.appendChild(value2Cell);
+            tableElement.appendChild(value1Row);
+
+            var sc_row = sortedCloseness.length;
+            var sc_max = 0;
+            var sc_min = Infinity;
+
+            for (var i = 0; i < sc_row; i++) {
+            	if(i==0){
+            		sc_max = sortedCloseness[i];
+            		sc_min = sortedCloseness[i];
+            	} else {
+            		if (sortedCloseness[i] > sc_max){
+            			sc_max = sortedCloseness[i];
+            		}
+            		if (sortedCloseness[i] < sc_min){
+            			sc_min =sortedCloseness[i];
+            		}
+            	}
+            	
+            }
+
+            if (sc_min != sc_max){
+            	var sc_diff = (sc_max - sc_min)/3;
+            }
+
+            var sc_range1 = parseFloat(sc_max) - 0.2;
+            var sc_range2 = parseFloat(sc_max) - 0.1;
+            /*var sc_range1 = parseFloat(sc_min) + parseFloat(sc_diff);
+            var sc_range2 = parseFloat(sc_min) + parseFloat(sc_diff) * 2;*/
+
+            for (var i = 0; i < sc_row; i++){
+            	if (sortedCloseness[i] >= sc_min && sortedCloseness[i] < sc_range1){
+            		//---------------------------------------------------------lop-
+		            var value1Row = document.createElement('tr');
+
+		            var value1LabelCell = document.createElement('td');
+		            value1LabelCell.textContent = sortedTech[i];
+		            value1LabelCell.style.border = 'none';
+		            value1LabelCell.style.backgroundColor = '#ffcdcd';
+		            value1Row.appendChild(value1LabelCell);
+
+		            var value1Cell = document.createElement('td');
+		            value1Cell.textContent = sortedCloseness[i];
+		            value1Cell.style.border = 'none';
+		            value1Cell.style.backgroundColor = '#ffcdcd';
+		            value1Row.appendChild(value1Cell);
+		            tableElement.appendChild(value1Row);
+
+		            var value2Cell = document.createElement('td');
+		            value2Cell.textContent = 'Not Preferred';
+		            value2Cell.style.border = 'none';
+		            value2Cell.style.backgroundColor = '#ffcdcd';
+		            value1Row.appendChild(value2Cell);
+		            tableElement.appendChild(value1Row);
+
+            	} else if (sortedCloseness[i] >= sc_range1 && sortedCloseness[i] < sc_range2){
+            		var value1Row = document.createElement('tr');
+
+		            var value1LabelCell = document.createElement('td');
+		            value1LabelCell.textContent = sortedTech[i];
+		            value1LabelCell.style.border = 'none';
+		            value1LabelCell.style.backgroundColor = '#f7f4c9';
+		            value1Row.appendChild(value1LabelCell);
+
+		            var value1Cell = document.createElement('td');
+		            value1Cell.textContent = sortedCloseness[i];
+		            value1Cell.style.border = 'none';
+		            value1Cell.style.backgroundColor = '#f7f4c9';
+		            value1Row.appendChild(value1Cell);
+		            tableElement.appendChild(value1Row);
+
+		            var value2Cell = document.createElement('td');
+		            value2Cell.textContent = 'Preferred';
+		            value2Cell.style.border = 'none';
+		            value2Cell.style.backgroundColor = '#f7f4c9';
+		            value1Row.appendChild(value2Cell);
+		            tableElement.appendChild(value1Row);
+            		
+
+            	} else if (sortedCloseness[i] >= sc_range2 && sortedCloseness[i] <= sc_max){
+            		var value1Row = document.createElement('tr');
+
+		            var value1LabelCell = document.createElement('td');
+		            value1LabelCell.textContent = sortedTech[i];
+		            value1LabelCell.style.border = 'none';
+		            value1LabelCell.style.backgroundColor = '#bcf5bc';
+		            value1Row.appendChild(value1LabelCell);
+
+		            var value1Cell = document.createElement('td');
+		            value1Cell.textContent = sortedCloseness[i];
+		            value1Cell.style.border = 'none';
+		            value1Cell.style.backgroundColor = '#bcf5bc';
+		            value1Row.appendChild(value1Cell);
+		            tableElement.appendChild(value1Row);
+
+		            var value2Cell = document.createElement('td');
+		            value2Cell.textContent = 'Most Preferred';
+		            value2Cell.style.border = 'none';
+		            value2Cell.style.backgroundColor = '#bcf5bc';
+		            value1Row.appendChild(value2Cell);
+		            tableElement.appendChild(value1Row);
+
+            	}
+
+            }
+
+            container.appendChild(tableElement);
+
+            var lineElement = document.createElement('hr');
+            lineElement.style.borderColor = 'black';
+            lineElement.style.borderWidth = '1px';
+            lineElement.style.borderStyle = 'solid';
+            lineElement.style.marginTop = "0";
+            lineElement.style.marginBottom = "0";
+            container.appendChild(lineElement);
+
+            var tableElement = document.createElement('table');
+            var value1Row = document.createElement('tr');
+
+            //---------------------------------------------------------tech-
+            
+            var value1LabelCell = document.createElement('td');
+            value1LabelCell.innerHTML = '<br><br><br><br>';
+            value1LabelCell.style.width='300px';
+            value1LabelCell.style.fontWeight = 'bold';
+            value1Row.appendChild(value1LabelCell);
+            tableElement.appendChild(value1Row);
+            
+            var value1Row = document.createElement('tr');
+
+            container.appendChild(tableElement);
+
+
+            var tableElement = document.createElement('table');
+            var value1Row = document.createElement('tr');
+
+            //---------------------------------------------------------tech-
+            var value1LabelCell = document.createElement('td');
+
+            var image = document.createElement('img');
+            image.src = 'images/iitb.jpg';
+            image.style.width ='100px';
+            //container.appendChild(image);
+            value1LabelCell.appendChild(image);
+            value1Row.appendChild(value1LabelCell);
+            tableElement.appendChild(value1Row);
+
+            var value1LabelCell = document.createElement('td');
+            value1LabelCell.style.width = '400px';
+            value1LabelCell.style.textAlign = 'center';
+            var image = document.createElement('img');
+            image.src = 'images/CUSE_Txt_JPG-01.jpg';
+            image.style.width ='300px';
+            //container.appendChild(image);
+            value1LabelCell.appendChild(image);
+            value1Row.appendChild(value1LabelCell);
+            tableElement.appendChild(value1Row);
+
+            var value1LabelCell = document.createElement('td');
+            value1LabelCell.style.width = '92px';
+            value1LabelCell.style.textAlign = 'center';
+            var image = document.createElement('img');
+            image.src = 'images/IC-EcoWS_Logo_4pdf.jpg';
+            image.style.width ='92px';
+            //container.appendChild(image);
+            value1LabelCell.appendChild(image);
+            value1Row.appendChild(value1LabelCell);
+            tableElement.appendChild(value1Row);
+            
+            var value1Row = document.createElement('tr');
+
+            container.appendChild(tableElement);
+
+            html2pdf().set(opt).from(container).toPdf().get('pdf').then(function(pdf) {
+                // Display the PDF in the browser
+                var pdfData = pdf.output('blob');
+                var pdfURL = URL.createObjectURL(pdfData);
+                window.open(pdfURL);
+            });
+
+
+		    /*var outputElement = document.getElementById("newmat");
+		    outputElement.innerHTML += JSON.stringify(relativeCloseness, null, 2);
+		    outputElement.innerHTML += JSON.stringify(sortedTech, null, 2);*/
+		    //outputElement.innerHTML +=console.log;
+		});
+		
+		document.getElementById('submitNeoButton').style.display = 'none'; 
+		document.getElementById('scrollmessage').style.display = 'none';
+		//----------------------------------------------------------------------------------------------------
+		const criteriaRadio = document.getElementById('opt_criteria2');
+		const noCriteriaRadio = document.getElementById('opt_criteria1');
+		const settingSelect = document.getElementById('settingSelect');
+		const enduseSelect = document.getElementById('enduseSelect');
+
+		criteriaRadio.addEventListener('change', function() {
+		  const isChecked = this.checked;
+		  settingSelect.disabled = !isChecked;
+		  enduseSelect.disabled = !isChecked;
+		});
+
+		noCriteriaRadio.addEventListener('change', function() {
+		  const isChecked = this.checked;
+		  settingSelect.disabled = isChecked;
+		  enduseSelect.disabled = isChecked;
+		});
+		const form = document.querySelector('form');
+		const output = document.getElementById('output');
+		//----------------------------------------------------------------------------------------------------
+    </script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html oncontextmenu="return false">
+<head>
+  <title>JalVishwa: Decision Support Tool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+    
+    #header {
+      height: 80px;
+      font-family: sans-serif;
+      align-items: center;
+      align-content: center;
+      text-align: center;
+      font-weight: bold;
+      /*color: white;*/
+      background-color: #dbbb85;/*#134C97;/*#D3D3D3;/*grey;/*white;/*#2F4F4F; /*#f7f5c3;*/
+      position: fixed;
+      border-bottom: 1px black solid;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+    
+    #footer {
+      padding: 10px;
+      background-color: #2F4F4F;
+      font-family: sans-serif;
+      color: white;
+      font-weight: bold;
+      position: fixed;
+      text-align: center;
+      vertical-align: middle;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    
+    #content {
+      padding-top: 80px; /* Adjust padding top to accommodate header height */
+      padding-bottom: 40px; /* Adjust padding bottom to accommodate footer height */
+    }
+    
+    #middle {
+      height: calc(100vh - 200px);
+      display: flex;
+    }
+    
+    #left {
+      flex: 0.3;
+      background-color: #f9f9f9;
+      height: 680px;
+    }
+    
+    #right {
+      flex: 0;
+      background-color: #f9f9f9;
+    }
+    
+    #phpFrame {
+      flex: 2;
+      background-color: #ffffff;
+      border: none;
+      height: 100%;
+      width: 100%;
+    }
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh; /* Adjust this value based on your layout */
+    }
+    .button 
+    {
+      font-size: 14px; 
+      font-family: sans-serif;
+      font-weight: bold;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      border-radius: 7px;
+      height: 45px;
+      color: black;
+      background-color: lightyellow;
+    }
+    .buttontool 
+    {
+      font-size: 14px; 
+      font-family: sans-serif;
+      font-weight: bold;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      border-radius: 7px;
+      height: 45px;
+      color: black;
+      background-color: #E0FFFF;
+    }
+    .active {
+      background-color: brown;/*#5adbb5;/**/
+      color: white;
+    }
+    body
+    {
+          user-select: none;
+    }
+
+  </style>
+  
+  <script type="text/javascript">
+    document.addEventListener('keydown', function(event) {
+      // Check if the Ctrl key is pressed
+      if (event.ctrlKey) {
+        event.preventDefault(); // Prevent the default behavior
+      }
+    });
+  </script>
+  <script>
+    window.addEventListener('resize', adjustIFrameHeight);
+    function adjustIFrameHeight() {
+      var iframe = document.getElementById('phpFrame');
+      var headerHeight = document.getElementById('header').offsetHeight;
+      var footerHeight = document.getElementById('footer').offsetHeight;
+      var contentHeight = window.innerHeight - (headerHeight + footerHeight);
+      iframe.style.height = contentHeight + 'px';
+    }
+
+    function receiveMessage(event) {
+      if (event.data.type === 'changeColor') {
+        var buttonId = event.data.buttonId;
+        var button = document.getElementById(buttonId);
+        button.classList.toggle('active');
+      }
+    }
+
+    window.addEventListener('message', receiveMessage, false);
+  </script>
+</head>
+<body>
+  <div id="header" class="container">
+    <!-- Header content goes here -->
+    <table style="overflow-x: auto; width: 100%; table-layout: fixed;">
+      <tr style="height: 70px;">
+      <td style="padding-top:0px; width: 240px;">
+        <img src='images/dst-logo1.jpg' style="width: 180px; line-height: 1; border: 1px solid black; border-radius:  10px ;" >
+        <figcaption style="color: black; background-color: lightgreen;">Sponsored project IC-EcoWS</figcaption>
+      </td>
+      <td style="padding-top:6px; width: 250px; text-align: right;">
+        <img src='images/Jalvishwa_4web.jpg' style="width: 110px; line-height: 1; border: 1px solid black; border-radius: 10px;">
+      </td>
+      <td>
+        <figcaption style="font-size: 26px; color: #134C97; line-height: 1.2; padding-right:40px; padding-left:10px; text-align: left;">JalVishwa 1.0</figcaption> <figcaption style="font-size: 18px; color: #134C97; line-height: 1.2; padding-right:40px; padding-left:10px; text-align: left;">Decision Support Tool to select <br>an appropriate technology for wastewater treatment</figcaption> <!--#134C97 -->
+      </td>
+      <td style="padding-top:6px; width: 190px; ">
+        <img src='images/CUSE_Txt_JPG-01.jpg' style="width: 180px; line-height: 1; border: 1px solid black; border-radius: 10px;">
+      </td>
+      <td style="padding-top:6px; width: 90px;">
+        <img src='images/IITB.jpg' style="width: 75px; line-height: 1; border: 1px solid black; border-radius: 10px;">
+      </td>
+    </tr>
+    </table>
+  </div>
+
+  <div id="content">
+    <div id="middle">
+      <div id="left" style="border-right: 1px black solid;">
+        <!-- Content for the left section goes here -->
+        <center>
+          <table style="text-align: center;">
+            <tr>
+              <br>
+              <img src='images/IC-EcoWS_Logo.jpg' style="width: 100px; border: 1px solid black; border-radius: 10px;">
+              <br>
+            </tr>
+            <tr>
+              <br>
+              <a href="http://abbas-iitbombay.github.io/main.html"><button id="buttonhome" class="tab-button button" style="width:80%; height: 30px;"><b>Home</b></button></a>
+              <a href="http://117.252.14.242/RMOD_DST/Default.aspx"><button type="submit" class="tab-button button" style="width:80%; height: 30px;"><b>About Project</b></button></a>
+              <br>
+              <br><br>
+            </tr>
+            <tr>
+              <br>
+              <button id="button1" class="tab-button buttontool" onclick="changeContent(1)" style="width:80%;"><b>Life Cycle Costing Tool</b></button>
+              <button id="button2" class="tab-button buttontool" onclick="changeContent(2)" style="width:80%;"><b>Technology Selection Tool</b></button>
+              <br><br><br><br>
+            </tr>
+            <tr>
+              <button id="button4" class="tab-button button" onclick="changeContent(4)" style="width:80%; height: 30px;"><b>Tutorials</b></button>
+              <button id="button3" class="tab-button button" onclick="changeContent(3)" style="width:80%; height: 30px;"><b>Contact Info</b></button>
+            </tr>
+        </td>
+      </table>
+          </center>
+      </div>
+      
+      <iframe id="phpFrame" src="Load_page.html" frameborder="0"></iframe>
+      
+      <div id="right">
+        <!-- Content for the right section goes here -->
+      </div>
+    </div>
+  </div>
+  
+  <div id="footer">
+    <!-- Footer content goes here -->
+    <label>
+      &#169 Indian Institute of Technology Bombay, Powai, Mumbai - 400 076
+    </label>
+  </div>
+
+  <script>
+    adjustIFrameHeight();
+    const button1 = document.getElementById('button1');
+    const button2 = document.getElementById('button2');
+    const button3 = document.getElementById('button3');
+    const button4 = document.getElementById('button4');
+    const iframe = document.getElementById('phpFrame');
+
+    button1.addEventListener('click', function() {
+      // Change the iframe source to the desired content for button 1
+      iframe.src = 'Tool_1_LCC.html';
+      button1.classList.add('active');
+      button2.classList.remove('active');
+      button3.classList.remove('active');
+      button4.classList.remove('active');
+    });
+
+    button2.addEventListener('click', function() {
+      // Change the iframe source to the desired content for button 2
+      iframe.src = 'Tool_2_DST.html';
+      button1.classList.remove('active');
+      button2.classList.add('active');
+      button3.classList.remove('active');
+      button4.classList.remove('active');
+    });
+
+    button3.addEventListener('click', function() {
+      // Change the iframe source to the desired content for button 2
+      iframe.src = 'contactinfo.html';
+      button1.classList.remove('active');
+      button2.classList.remove('active');
+      button3.classList.add('active');
+      button4.classList.remove('active');
+    });
+
+    button4.addEventListener('click', function() {
+      // Change the iframe source to the desired content for button 2
+      iframe.src = 'tutorial.html';
+      button1.classList.remove('active');
+      button2.classList.remove('active');
+      button3.classList.remove('active');
+      button4.classList.add('active');
+    });
+    // Listen for the popstate event (navigating back)
+    window.onpopstate = function(event) {
+      // Reset button styles to default when navigating back
+      button1.classList.remove('active');
+      button2.classList.remove('active');
+      button3.classList.remove('active');
+      button4.classList.remove('active');
+    };
+
+    
+  </script>
+</body>
+</html>

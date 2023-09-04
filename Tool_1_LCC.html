@@ -60,7 +60,7 @@
 
         .rolling-text {
             white-space: nowrap;
-            animation: roll 25s linear infinite;
+            animation: roll 20s linear infinite;
         }
 
         .rolling-text-container:hover .rolling-text {
@@ -1175,17 +1175,23 @@
             value1Row.appendChild(value1LabelCell);
             tableElement.appendChild(value1Row);
             
-            var value1Row = document.createElement('tr');
-
             container.appendChild(tableElement);
 
             //-------------------------------------------------------------------------------------------------------------------------------
 
             var pageBreakElement = document.createElement('div');
-            pageBreakElement.style.pageBreakAfter = 'always';
+            pageBreakElement.style.pageBreakAfter = 'none';
             container.appendChild(pageBreakElement);
 
             var tableElement = document.createElement('table');
+            var value1Row = document.createElement('tr');
+            var value1LabelCell = document.createElement('td');
+            value1LabelCell.innerHTML = '<br>';
+            value1LabelCell.style.width='300px';
+            value1LabelCell.style.fontWeight = 'bold';
+            value1Row.appendChild(value1LabelCell);
+            tableElement.appendChild(value1Row); 
+
             var value1Row = document.createElement('tr');
 
             var value1LabelCell = document.createElement('td');

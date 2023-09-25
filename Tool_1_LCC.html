@@ -188,12 +188,21 @@
                 rep_yr4.max=lop-0.5;
                 rep_yr5.max=lop-0.5;
             }
-
+            function updateMinValues() {
+                //const lop = parseInt(lopInput.value);
+                rep_yr1.max=0.5;
+                rep_yr2.max=0.5;
+                rep_yr3.max=0.5;
+                rep_yr4.max=0.5;
+                rep_yr5.max=0.5;
+            }
             // Add event listener to the lop input field
             lopInput.addEventListener('input', updateMaxValues);
+            lopInput.addEventListener('input', updateMinValues);
 
             // Initialize the max values
             updateMaxValues();
+            updateMinValues();
         });
     </script>
     <div class= "card-header text-left">
@@ -336,7 +345,7 @@
                                 <input class='inp_box' type='number' id='rate1' name='rate1' step='0.01' min = '0' value='0'>
                             </td>
                             <td>
-                                <input class='inp_box' type='number' id='rep_yr1' name='rep_yr1' step='0.5'  min='0.5' value ='0.5'>
+                                <input class='inp_box' type='number' id='rep_yr1' name='rep_yr1' step='0.5' value =''>
                             </td>
                         </tr>
                         <tr>
@@ -347,7 +356,7 @@
                                 <input class='inp_box' type='number' id='rate2' name='rate2' step='0.01'  min = '0' value='0'>
                             </td>
                             <td>
-                                <input class='inp_box' type='number' id='rep_yr2' name='rep_yr2' step='0.5' min='0.5' value ='0.5'>
+                                <input class='inp_box' type='number' id='rep_yr2' name='rep_yr2' step='0.5' value =''>
                             </td>
                         </tr>
                         <tr>
@@ -358,7 +367,7 @@
                                 <input class='inp_box' type='number' id='rate3' name='rate3' step='0.01'  min = '0' value='0'>
                             </td>
                             <td>
-                                <input class='inp_box' type='number' id='rep_yr3' name='rep_yr3' step='0.5' min='0.5' value ='0.5'>
+                                <input class='inp_box' type='number' id='rep_yr3' name='rep_yr3' step='0.5' value =''>
                             </td>
                         </tr>
                         <tr>
@@ -369,7 +378,7 @@
                                 <input class='inp_box' type='number' id='rate4' name='rate4' step='0.01' min = '0' value='0'>
                             </td>
                             <td>
-                                <input class='inp_box' type='number' id='rep_yr4' name='rep_yr4' step='0.5' min='0.5' value ='0.5'>
+                                <input class='inp_box' type='number' id='rep_yr4' name='rep_yr4' step='0.5' value =''>
                             </td>
                         </tr>
                         <tr >
@@ -380,7 +389,7 @@
                                 <input class='inp_box' type='number' id='rate5' name='rate5' step='0.01'  min = '0' value='0'>
                             </td>
                             <td style="padding-bottom: 10px;">
-                                <input class='inp_box' type='number' id='rep_yr5' name='rep_yr5' step='0.5' min='0.5' value ='0.5'>
+                                <input class='inp_box' type='number' id='rep_yr5' name='rep_yr5' step='0.5' value =''>
                             </td>
                         </tr>
                     </table>

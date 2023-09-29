@@ -509,11 +509,11 @@
             rate3.value='';
             rate4.value='';
             rate5.value='';
-            rep_yr1.value='0.5';
-            rep_yr2.value='0.5';
-            rep_yr3.value='0.5';
-            rep_yr4.value='0.5';
-            rep_yr5.value='0.5';
+            rep_yr1.value='';
+            rep_yr2.value='';
+            rep_yr3.value='';
+            rep_yr4.value='';
+            rep_yr5.value='';
 
             // Show the "Generate 2PDF" buttons
             var pdfButton = document.getElementById("LccButton");// querySelector('input[value="Generate Life Cycle Costing Report"]');
@@ -570,44 +570,74 @@
             var pw_rep_cost = parseFloat(rep_cost * factor2).toFixed(2);
 
             var sum_part1=0;
-            var jmax1 = Math.ceil(parseFloat(lop/rep_yr1-1));            
-            var j=1;var nj=0;
-            while(j<=jmax1){
-                nj=j * rep_yr1;
-                sum_part1 = sum_part1 + rate1*1/(1+interest/100)**(nj);
-                j++;
+            if(rep_yr1==0 || rep_yr1=="")
+            {
+                var jmax1=1;
+            }
+            else{
+                var jmax1 = Math.ceil(parseFloat(lop/rep_yr1-1));            
+                var j=1;var nj=0;
+                while(j<=jmax1){
+                    nj=j * rep_yr1;
+                    sum_part1 = sum_part1 + rate1*1/(1+interest/100)**(nj);
+                    j++;
+                }
             }
             var sum_part2=0;
-            var jmax2 = Math.ceil(parseFloat(lop/rep_yr2-1));
-            var j=1;var nj=0;
-            while(j<=jmax2){
-                nj=j * rep_yr2;
-                sum_part2 = sum_part2 + rate2*1/(1+interest/100)**(nj);
-                j++;
+            if(rep_yr2==0 || rep_yr2=="")
+            {
+                var jmax2=1;
+            }
+            else{
+                var jmax2 = Math.ceil(parseFloat(lop/rep_yr2-1));
+                var j=1;var nj=0;
+                while(j<=jmax2){
+                    nj=j * rep_yr2;
+                    sum_part2 = sum_part2 + rate2*1/(1+interest/100)**(nj);
+                    j++;
+                }
             }
             var sum_part3=0;
-            var jmax3 = Math.ceil(parseFloat(lop/rep_yr3-1));
-            var j=1;var nj=0;
-            while(j<=jmax3){
-                nj=j * rep_yr3;
-                sum_part3 = sum_part3 + rate3*1/(1+interest/100)**(nj);
-                j++;
+            if(rep_yr3==0 || rep_yr3=="")
+            {
+                var jmax3=1;
+            }
+            else{
+                var jmax3 = Math.ceil(parseFloat(lop/rep_yr3-1));
+                var j=1;var nj=0;
+                while(j<=jmax3){
+                    nj=j * rep_yr3;
+                    sum_part3 = sum_part3 + rate3*1/(1+interest/100)**(nj);
+                    j++;
+                }
             }
             var sum_part4=0;
-            var jmax4 = Math.ceil(parseFloat(lop/rep_yr4-1));
-            var j=1;var nj=0;
-            while(j<=jmax4){
-                nj=j * rep_yr4;
-                sum_part4 = sum_part4 + rate4*1/(1+interest/100)**(nj);
-                j++;
+            if(rep_yr4==0 || rep_yr4=="")
+            {
+                var jmax4=1;
+            }
+            else{
+                var jmax4 = Math.ceil(parseFloat(lop/rep_yr4-1));
+                var j=1;var nj=0;
+                while(j<=jmax4){
+                    nj=j * rep_yr4;
+                    sum_part4 = sum_part4 + rate4*1/(1+interest/100)**(nj);
+                    j++;
+                }
             }
             var sum_part5=0;
-            var jmax5 = Math.ceil(parseFloat(lop/rep_yr5-1));
-            var j=1;var nj=0;
-            while(j<=jmax5){
-                nj=j * rep_yr5;
-                sum_part5 = sum_part5 + rate5*1/(1+interest/100)**(nj);
-                j++;
+            if(rep_yr5==0 || rep_yr5=="")
+            {
+                var jmax5=1;
+            }
+            else{
+                var jmax5 = Math.ceil(parseFloat(lop/rep_yr5-1));
+                var j=1;var nj=0;
+                while(j<=jmax5){
+                    nj=j * rep_yr5;
+                    sum_part5 = sum_part5 + rate5*1/(1+interest/100)**(nj);
+                    j++;
+                }
             }
             var pw_sumparts = parseFloat(sum_part1 + sum_part2 + sum_part3 + sum_part4 + sum_part5).toFixed(2);
             pw_sumparts = parseFloat(pw_sumparts / 100000);

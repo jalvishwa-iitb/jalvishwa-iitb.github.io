@@ -570,7 +570,12 @@
             var pw_rep_cost = parseFloat(rep_cost * factor2).toFixed(2);
 
             var sum_part1=0;
-            var jmax1 = Math.ceil(parseFloat(lop/rep_yr1-1));
+            if (rep_yr1==0 || rep_yr1=""){
+                var jmax1=1;
+            }
+            else{
+                var jmax1 = Math.ceil(parseFloat(lop/rep_yr1-1));
+            }
             var j=1;var nj=0;
             while(j<=jmax1){
                 nj=j * rep_yr1;

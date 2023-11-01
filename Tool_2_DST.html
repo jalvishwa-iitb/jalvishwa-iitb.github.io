@@ -174,7 +174,7 @@
 )<br/>
 				        <input type="checkbox" name="indicate[]" value="EuP">Eutrophication Potential <br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(kg PO<sub>4</sub><sup>3-</sup> eq./p.e.-year)
 <br/>
-				        <input type="checkbox" name="indicate[]" value="EcoSer">Ecosystem Services<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 10)<br/>
+				        <input type="checkbox" name="indicate[]" value="EcoSer">Ecosystem Services<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 100)<br/>
 				        <input type="hidden" name="num_textboxes1" value="0" />
 				    </div>
 				    
@@ -186,9 +186,9 @@
 	    		<td style="width: 325px;">
 				    <div>
 				    	<h5>3. Circularity Potential Indicators</h5>
-				        <input type="checkbox" name="indicate[]" value="WasRec">Wastewater recycling<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 10)<br/>
-				        <input type="checkbox" name="indicate[]" value="EnePot">Energy<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 10)<br/>
-				        <input type="checkbox" name="indicate[]" value="ProPot">Products<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 10)<br/>
+				        <input type="checkbox" name="indicate[]" value="WasRec">Wastewater recycling<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 100)<br/>
+				        <input type="checkbox" name="indicate[]" value="EnePot">Energy<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 100)<br/>
+				        <input type="checkbox" name="indicate[]" value="ProPot">Products<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 100)<br/>
 				        <input type="hidden" name="num_textboxes2" value="0" />
 				    </div>
 				    
@@ -202,8 +202,8 @@
 				    	<h5>4. Social Indicators</h5>
 				    	<input type="checkbox" name="indicate[]" value="SocMachine">% Manpower to machine cost (Percent)<br/>
 				        <input type="checkbox" name="indicate[]" value="SocUnskill">% Unskilled to skilled manpower (Percent)<br/>
-				        <input type="checkbox" name="indicate[]" value="SocAccept">Acceptability<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 10)<br/>
-				        <input type="checkbox" name="indicate[]" value="SocPart">Participation<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 10)<br/>
+				        <input type="checkbox" name="indicate[]" value="SocAccept">Acceptability<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 100)<br/>
+				        <input type="checkbox" name="indicate[]" value="SocPart">Participation<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 100)<br/>
 				        <input type="hidden" name="num_textboxes3" value="0" />
 				    </div>
 				    
@@ -218,10 +218,10 @@
 	    		<td>
 				    <div>
 				    	<h5>5. Resilience Indicators</h5>
-				        <input type="checkbox" name="indicate[]" value="R_reli">Reliability<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 10)<br/>
-				        <input type="checkbox" name="indicate[]" value="R_dura">Durability<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 10)<br/>
-				        <input type="checkbox" name="indicate[]" value="R_flex">Flexibility<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 10)<br/>
-				        <input type="checkbox" name="indicate[]" value="R_repl">Replicability<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 10)<br/>
+				        <input type="checkbox" name="indicate[]" value="R_reli">Reliability<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 100)<br/>
+				        <input type="checkbox" name="indicate[]" value="R_dura">Durability<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 100)<br/>
+				        <input type="checkbox" name="indicate[]" value="R_flex">Flexibility<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 100)<br/>
+				        <input type="checkbox" name="indicate[]" value="R_repl">Replicability<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 100)<br/>
 				        <input type="hidden" name="num_textboxes4" value="0" />
 				    </div>
 				    
@@ -344,7 +344,7 @@
 	    	</td>
 	    	<td>
 	    		<div id="scrollmessage" style ="background-color: pink;">
-					Scroll down to see the matrix and make changes, if any, before generating the LCC report.
+					Scroll down to fill in the decision-making matrix before generating the technology selection report.
 				</div>
 			</td>
 		</table>	    
@@ -664,55 +664,55 @@
 		        var values = [];
 
 		        if (indicator === "Capex") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "Opex") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "Revenue") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "LCC") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "GWP") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "EuP") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "EcoSer") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "WasRec") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "EnePot") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "ProPot") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "SocMachine") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "SocUnskill") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "SocAccept") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "SocPart") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "R_reli") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "R_dura") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "R_flex") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "R_repl") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "BOD") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "COD") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "Nitro") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "Phosph") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "Pathogens") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "Em_cont") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } else if (indicator === "Lan_suit") {
-		            values = ['', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['100', '', '', '', '', '', '', '', '', '', '', '', ''];
 		        } 
 
 		        wtmat.A0C0.push(values[0]);
@@ -751,55 +751,55 @@
 		        var values = [];
 
 		        if (indicator === "Capex") {
-		            values = ['1', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'];
 		        } else if (indicator === "Opex") {
-		            values = ['1', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'];
 		        } else if (indicator === "Revenue") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "LCC") {
-		            values = ['1', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'];
 		        } else if (indicator === "GWP") {
-		            values = ['1', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'];
 		        } else if (indicator === "EuP") {
-		            values = ['1', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'];
 		        } else if (indicator === "EcoSer") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "WasRec") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "EnePot") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "ProPot") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "SocMachine") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "SocUnskill") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "SocAccept") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "SocPart") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "R_reli") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "R_dura") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "R_flex") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "R_repl") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "BOD") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "COD") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "Nitro") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "Phosph") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "Pathogens") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "Em_cont") {
-		            values = ['0', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 		        } else if (indicator === "Lan_suit") {
-		            values = ['1', '', '', '', '', '', '', '', '', '', '', '', ''];
+		            values = ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'];
 		        } 
 
 		        cbmat.A0C0.push(values[0]);

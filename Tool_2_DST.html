@@ -364,139 +364,477 @@
 
     <script>
     	function addTextbox() {
-        	var gridContainer = document.getElementById('grid-container');
+		    var gridContainer = document.getElementById('grid-container');
 		    gridContainer.innerHTML = ''; // Clear previous grid
 		    document.getElementById('submitNeoButton').style.display = 'none'; 
 		    var form = document.querySelector('form');
 		    var numTextboxes = form.elements['num_textboxes'].value;
 		    var textboxesContainer = document.getElementById('textboxes-container');
+		    
+		    // Create a container for the textbox and delete button
+		    var container = document.createElement('div');
+		    container.style.display = 'flex'; // Set display to flex for positioning
+		    container.style.alignItems = 'center'; // Align items vertically
+		    
 		    var newTextbox = document.createElement('input');
 		    newTextbox.type = 'text';
 		    newTextbox.name = 'textbox[]';
 		    newTextbox.value = '1.' + (parseInt(numTextboxes) + 1) +' ';
-		    newTextbox.style.display = 'block'; // Display the new textbox on a new line
 		    newTextbox.style.width = '190px';
 		    newTextbox.style.textAlign = 'left';
-		    textboxesContainer.appendChild(newTextbox);
+
+		    // Create a delete button
+		    var deleteButton = document.createElement('button');
+		    deleteButton.textContent = '×';//'x'//'−';//'—';
+		    deleteButton.type = 'button'; // Set button type to prevent form submission
+		    deleteButton.style.fontWeight = 'bold';
+		    deleteButton.style.color = 'red';
+		    deleteButton.style.backgroundColor = 'white';
+		    deleteButton.style.border = 'none';
+		    deleteButton.onclick = function() {
+		        // Remove the container when delete button is clicked
+		        textboxesContainer.removeChild(container);
+		    };
+
+		    // Append textbox and delete button to the container
+		    container.appendChild(newTextbox);
+		    container.appendChild(deleteButton);
+
+		    // Append container to the textboxes container
+		    textboxesContainer.appendChild(container);
+
 		    form.elements['num_textboxes'].value = parseInt(numTextboxes) + 1;
 		}
+
+    	// function addTextbox() {
+        // 	var gridContainer = document.getElementById('grid-container');
+		//     gridContainer.innerHTML = ''; // Clear previous grid
+		//     document.getElementById('submitNeoButton').style.display = 'none'; 
+		//     var form = document.querySelector('form');
+		//     var numTextboxes = form.elements['num_textboxes'].value;
+		//     var textboxesContainer = document.getElementById('textboxes-container');
+		//     var newTextbox = document.createElement('input');
+		//     newTextbox.type = 'text';
+		//     newTextbox.name = 'textbox[]';
+		//     newTextbox.value = '1.' + (parseInt(numTextboxes) + 1) +' ';
+		//     newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		//     newTextbox.style.width = '190px';
+		//     newTextbox.style.textAlign = 'left';
+		//     textboxesContainer.appendChild(newTextbox);
+		//     form.elements['num_textboxes'].value = parseInt(numTextboxes) + 1;
+		// }
 		function addTextbox1() {
-        	var gridContainer = document.getElementById('grid-container');
+		    var gridContainer = document.getElementById('grid-container');
 		    gridContainer.innerHTML = ''; // Clear previous grid
 		    document.getElementById('submitNeoButton').style.display = 'none'; 
 		    var form = document.querySelector('form');
 		    var numTextboxes = form.elements['num_textboxes1'].value;
 		    var textboxesContainer = document.getElementById('textboxes-container1');
+		    
+		    // Create a container for the textbox and delete button
+		    var container = document.createElement('div');
+		    container.style.display = 'flex'; // Set display to flex for positioning
+		    container.style.alignItems = 'center'; // Align items vertically
+		    
 		    var newTextbox = document.createElement('input');
 		    newTextbox.type = 'text';
 		    newTextbox.name = 'textbox[]';
-		    newTextbox.value = '2.' + (parseInt(numTextboxes) + 1) + ' ';
-		    newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		    newTextbox.value = '2.' + (parseInt(numTextboxes) + 1) +' ';
 		    newTextbox.style.width = '230px';
 		    newTextbox.style.textAlign = 'left';
-		    textboxesContainer.appendChild(newTextbox);
+
+		    // Create a delete button
+		    var deleteButton = document.createElement('button');
+		    deleteButton.textContent = '×';//'x'//'−';//'—';
+		    deleteButton.type = 'button'; // Set button type to prevent form submission
+		    deleteButton.style.fontWeight = 'bold';
+		    deleteButton.style.color = 'red';
+		    deleteButton.style.backgroundColor = 'white';
+		    deleteButton.style.border = 'none';
+		    deleteButton.onclick = function() {
+		        // Remove the container when delete button is clicked
+		        textboxesContainer.removeChild(container);
+		    };
+
+		    // Append textbox and delete button to the container
+		    container.appendChild(newTextbox);
+		    container.appendChild(deleteButton);
+
+		    // Append container to the textboxes container
+		    textboxesContainer.appendChild(container);
+
 		    form.elements['num_textboxes1'].value = parseInt(numTextboxes) + 1;
 		}
+
+		// function addTextbox1() {
+        // 	var gridContainer = document.getElementById('grid-container');
+		//     gridContainer.innerHTML = ''; // Clear previous grid
+		//     document.getElementById('submitNeoButton').style.display = 'none'; 
+		//     var form = document.querySelector('form');
+		//     var numTextboxes = form.elements['num_textboxes1'].value;
+		//     var textboxesContainer = document.getElementById('textboxes-container1');
+		//     var newTextbox = document.createElement('input');
+		//     newTextbox.type = 'text';
+		//     newTextbox.name = 'textbox[]';
+		//     newTextbox.value = '2.' + (parseInt(numTextboxes) + 1) + ' ';
+		//     newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		//     newTextbox.style.width = '230px';
+		//     newTextbox.style.textAlign = 'left';
+		//     textboxesContainer.appendChild(newTextbox);
+		//     form.elements['num_textboxes1'].value = parseInt(numTextboxes) + 1;
+		// }
+		// function addTextbox2() {
+        // 	var gridContainer = document.getElementById('grid-container');
+		//     gridContainer.innerHTML = ''; // Clear previous grid
+		//     document.getElementById('submitNeoButton').style.display = 'none'; 
+		//     var form = document.querySelector('form');
+		//     var numTextboxes = form.elements['num_textboxes2'].value;
+		//     var textboxesContainer = document.getElementById('textboxes-container2');
+		//     var newTextbox = document.createElement('input');
+		//     newTextbox.type = 'text';
+		//     newTextbox.name = 'textbox[]';
+		//     newTextbox.value = '3.' + (parseInt(numTextboxes) + 1) + ' ';
+		//     newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		//     newTextbox.style.width = '280px';
+		//     newTextbox.style.textAlign = 'left';
+		//     textboxesContainer.appendChild(newTextbox);
+		//     form.elements['num_textboxes2'].value = parseInt(numTextboxes) + 1;
+		// }
 		function addTextbox2() {
-        	var gridContainer = document.getElementById('grid-container');
+		    var gridContainer = document.getElementById('grid-container');
 		    gridContainer.innerHTML = ''; // Clear previous grid
 		    document.getElementById('submitNeoButton').style.display = 'none'; 
 		    var form = document.querySelector('form');
 		    var numTextboxes = form.elements['num_textboxes2'].value;
 		    var textboxesContainer = document.getElementById('textboxes-container2');
+		    
+		    // Create a container for the textbox and delete button
+		    var container = document.createElement('div');
+		    container.style.display = 'flex'; // Set display to flex for positioning
+		    container.style.alignItems = 'center'; // Align items vertically
+		    
 		    var newTextbox = document.createElement('input');
 		    newTextbox.type = 'text';
 		    newTextbox.name = 'textbox[]';
-		    newTextbox.value = '3.' + (parseInt(numTextboxes) + 1) + ' ';
-		    newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		    newTextbox.value = '3.' + (parseInt(numTextboxes) + 1) +' ';
 		    newTextbox.style.width = '280px';
 		    newTextbox.style.textAlign = 'left';
-		    textboxesContainer.appendChild(newTextbox);
+
+		    // Create a delete button
+		    var deleteButton = document.createElement('button');
+		    deleteButton.textContent = '×';//'x'//'−';//'—';
+		    deleteButton.type = 'button'; // Set button type to prevent form submission
+		    deleteButton.style.fontWeight = 'bold';
+		    deleteButton.style.color = 'red';
+		    deleteButton.style.backgroundColor = 'white';
+		    deleteButton.style.border = 'none';
+		    deleteButton.onclick = function() {
+		        // Remove the container when delete button is clicked
+		        textboxesContainer.removeChild(container);
+		    };
+
+		    // Append textbox and delete button to the container
+		    container.appendChild(newTextbox);
+		    container.appendChild(deleteButton);
+
+		    // Append container to the textboxes container
+		    textboxesContainer.appendChild(container);
+
 		    form.elements['num_textboxes2'].value = parseInt(numTextboxes) + 1;
 		}
+		// function addTextbox3() {
+        // 	var gridContainer = document.getElementById('grid-container');
+		//     gridContainer.innerHTML = ''; // Clear previous grid
+		//     document.getElementById('submitNeoButton').style.display = 'none'; 
+		//     var form = document.querySelector('form');
+		//     var numTextboxes = form.elements['num_textboxes3'].value;
+		//     var textboxesContainer = document.getElementById('textboxes-container3');
+		//     var newTextbox = document.createElement('input');
+		//     newTextbox.type = 'text';
+		//     newTextbox.name = 'textbox[]';
+		//     newTextbox.value = '4.' + (parseInt(numTextboxes) + 1) + ' ';
+		//     newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		//     newTextbox.style.width = '190px';
+		//     newTextbox.style.textAlign = 'left';
+		//     textboxesContainer.appendChild(newTextbox);
+		//     form.elements['num_textboxes3'].value = parseInt(numTextboxes) + 1;
+		// }
 		function addTextbox3() {
-        	var gridContainer = document.getElementById('grid-container');
+		    var gridContainer = document.getElementById('grid-container');
 		    gridContainer.innerHTML = ''; // Clear previous grid
 		    document.getElementById('submitNeoButton').style.display = 'none'; 
 		    var form = document.querySelector('form');
 		    var numTextboxes = form.elements['num_textboxes3'].value;
 		    var textboxesContainer = document.getElementById('textboxes-container3');
+		    
+		    // Create a container for the textbox and delete button
+		    var container = document.createElement('div');
+		    container.style.display = 'flex'; // Set display to flex for positioning
+		    container.style.alignItems = 'center'; // Align items vertically
+		    
 		    var newTextbox = document.createElement('input');
 		    newTextbox.type = 'text';
 		    newTextbox.name = 'textbox[]';
-		    newTextbox.value = '4.' + (parseInt(numTextboxes) + 1) + ' ';
-		    newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		    newTextbox.value = '4.' + (parseInt(numTextboxes) + 1) +' ';
 		    newTextbox.style.width = '190px';
 		    newTextbox.style.textAlign = 'left';
-		    textboxesContainer.appendChild(newTextbox);
+
+		    // Create a delete button
+		    var deleteButton = document.createElement('button');
+		    deleteButton.textContent = '×';//'x'//'−';//'—';
+		    deleteButton.type = 'button'; // Set button type to prevent form submission
+		    deleteButton.style.fontWeight = 'bold';
+		    deleteButton.style.color = 'red';
+		    deleteButton.style.backgroundColor = 'white';
+		    deleteButton.style.border = 'none';
+		    deleteButton.onclick = function() {
+		        // Remove the container when delete button is clicked
+		        textboxesContainer.removeChild(container);
+		    };
+
+		    // Append textbox and delete button to the container
+		    container.appendChild(newTextbox);
+		    container.appendChild(deleteButton);
+
+		    // Append container to the textboxes container
+		    textboxesContainer.appendChild(container);
+
 		    form.elements['num_textboxes3'].value = parseInt(numTextboxes) + 1;
 		}
+		// function addTextbox4() {
+        // 	var gridContainer = document.getElementById('grid-container');
+		//     gridContainer.innerHTML = ''; // Clear previous grid
+		//     document.getElementById('submitNeoButton').style.display = 'none'; 
+		//     var form = document.querySelector('form');
+		//     var numTextboxes = form.elements['num_textboxes4'].value;
+		//     var textboxesContainer = document.getElementById('textboxes-container4');
+		//     var newTextbox = document.createElement('input');
+		//     newTextbox.type = 'text';
+		//     newTextbox.name = 'textbox[]';
+		//     newTextbox.value = '5.' + (parseInt(numTextboxes) + 1) + ' ';
+		//     newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		//     newTextbox.style.width = '190px';
+		//     newTextbox.style.textAlign = 'left';
+		//     textboxesContainer.appendChild(newTextbox);
+		//     form.elements['num_textboxes4'].value = parseInt(numTextboxes) + 1;
+		// }
 		function addTextbox4() {
-        	var gridContainer = document.getElementById('grid-container');
+		    var gridContainer = document.getElementById('grid-container');
 		    gridContainer.innerHTML = ''; // Clear previous grid
 		    document.getElementById('submitNeoButton').style.display = 'none'; 
 		    var form = document.querySelector('form');
 		    var numTextboxes = form.elements['num_textboxes4'].value;
 		    var textboxesContainer = document.getElementById('textboxes-container4');
+		    
+		    // Create a container for the textbox and delete button
+		    var container = document.createElement('div');
+		    container.style.display = 'flex'; // Set display to flex for positioning
+		    container.style.alignItems = 'center'; // Align items vertically
+		    
 		    var newTextbox = document.createElement('input');
 		    newTextbox.type = 'text';
 		    newTextbox.name = 'textbox[]';
-		    newTextbox.value = '5.' + (parseInt(numTextboxes) + 1) + ' ';
-		    newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		    newTextbox.value = '5.' + (parseInt(numTextboxes) + 1) +' ';
 		    newTextbox.style.width = '190px';
 		    newTextbox.style.textAlign = 'left';
-		    textboxesContainer.appendChild(newTextbox);
+
+		    // Create a delete button
+		    var deleteButton = document.createElement('button');
+		    deleteButton.textContent = '×';//'x'//'−';//'—';
+		    deleteButton.type = 'button'; // Set button type to prevent form submission
+		    deleteButton.style.fontWeight = 'bold';
+		    deleteButton.style.color = 'red';
+		    deleteButton.style.backgroundColor = 'white';
+		    deleteButton.style.border = 'none';
+		    deleteButton.onclick = function() {
+		        // Remove the container when delete button is clicked
+		        textboxesContainer.removeChild(container);
+		    };
+
+		    // Append textbox and delete button to the container
+		    container.appendChild(newTextbox);
+		    container.appendChild(deleteButton);
+
+		    // Append container to the textboxes container
+		    textboxesContainer.appendChild(container);
+
 		    form.elements['num_textboxes4'].value = parseInt(numTextboxes) + 1;
 		}
+		// function addTextbox5() {
+        // 	var gridContainer = document.getElementById('grid-container');
+		//     gridContainer.innerHTML = ''; // Clear previous grid
+		//     document.getElementById('submitNeoButton').style.display = 'none'; 
+		//     var form = document.querySelector('form');
+		//     var numTextboxes = form.elements['num_textboxes5'].value;
+		//     var textboxesContainer = document.getElementById('textboxes-container5');
+		//     var newTextbox = document.createElement('input');
+		//     newTextbox.type = 'text';
+		//     newTextbox.name = 'textbox[]';
+		//     newTextbox.value = '6.' + (parseInt(numTextboxes) + 1) + ' ';
+		//     newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		//     newTextbox.style.width = '230px';
+		//     newTextbox.style.textAlign = 'left';
+		//     textboxesContainer.appendChild(newTextbox);
+		//     form.elements['num_textboxes5'].value = parseInt(numTextboxes) + 1;
+		// }
 		function addTextbox5() {
-        	var gridContainer = document.getElementById('grid-container');
+		    var gridContainer = document.getElementById('grid-container');
 		    gridContainer.innerHTML = ''; // Clear previous grid
 		    document.getElementById('submitNeoButton').style.display = 'none'; 
 		    var form = document.querySelector('form');
 		    var numTextboxes = form.elements['num_textboxes5'].value;
 		    var textboxesContainer = document.getElementById('textboxes-container5');
+		    
+		    // Create a container for the textbox and delete button
+		    var container = document.createElement('div');
+		    container.style.display = 'flex'; // Set display to flex for positioning
+		    container.style.alignItems = 'center'; // Align items vertically
+		    
 		    var newTextbox = document.createElement('input');
 		    newTextbox.type = 'text';
 		    newTextbox.name = 'textbox[]';
-		    newTextbox.value = '6.' + (parseInt(numTextboxes) + 1) + ' ';
-		    newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		    newTextbox.value = '6.' + (parseInt(numTextboxes) + 1) +' ';
 		    newTextbox.style.width = '230px';
 		    newTextbox.style.textAlign = 'left';
-		    textboxesContainer.appendChild(newTextbox);
+
+		    // Create a delete button
+		    var deleteButton = document.createElement('button');
+		    deleteButton.textContent = '×';//'x'//'−';//'—';
+		    deleteButton.type = 'button'; // Set button type to prevent form submission
+		    deleteButton.style.fontWeight = 'bold';
+		    deleteButton.style.color = 'red';
+		    deleteButton.style.backgroundColor = 'white';
+		    deleteButton.style.border = 'none';
+		    deleteButton.onclick = function() {
+		        // Remove the container when delete button is clicked
+		        textboxesContainer.removeChild(container);
+		    };
+
+		    // Append textbox and delete button to the container
+		    container.appendChild(newTextbox);
+		    container.appendChild(deleteButton);
+
+		    // Append container to the textboxes container
+		    textboxesContainer.appendChild(container);
+
 		    form.elements['num_textboxes5'].value = parseInt(numTextboxes) + 1;
 		}
+
+		// function addTextbox6() {
+        // 	var gridContainer = document.getElementById('grid-container');
+		//     gridContainer.innerHTML = ''; // Clear previous grid
+		//     document.getElementById('submitNeoButton').style.display = 'none'; 
+		//     var form = document.querySelector('form');
+		//     var numTextboxes = form.elements['num_textboxes6'].value;
+		//     var textboxesContainer = document.getElementById('textboxes-container6');
+		//     var newTextbox = document.createElement('input');
+		//     newTextbox.type = 'text';
+		//     newTextbox.name = 'textbox[]';
+		//     newTextbox.value = '7.' + (parseInt(numTextboxes) + 1) + ' ';
+		//     newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		//     newTextbox.style.width = '300px';
+		//     newTextbox.style.textAlign = 'left';
+		//     textboxesContainer.appendChild(newTextbox);
+		//     form.elements['num_textboxes6'].value = parseInt(numTextboxes) + 1;
+		// }
 		function addTextbox6() {
-        	var gridContainer = document.getElementById('grid-container');
+		    var gridContainer = document.getElementById('grid-container');
 		    gridContainer.innerHTML = ''; // Clear previous grid
 		    document.getElementById('submitNeoButton').style.display = 'none'; 
 		    var form = document.querySelector('form');
 		    var numTextboxes = form.elements['num_textboxes6'].value;
 		    var textboxesContainer = document.getElementById('textboxes-container6');
+		    
+		    // Create a container for the textbox and delete button
+		    var container = document.createElement('div');
+		    container.style.display = 'flex'; // Set display to flex for positioning
+		    container.style.alignItems = 'center'; // Align items vertically
+		    
 		    var newTextbox = document.createElement('input');
 		    newTextbox.type = 'text';
 		    newTextbox.name = 'textbox[]';
-		    newTextbox.value = '7.' + (parseInt(numTextboxes) + 1) + ' ';
-		    newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		    newTextbox.value = '7.' + (parseInt(numTextboxes) + 1) +' ';
 		    newTextbox.style.width = '300px';
 		    newTextbox.style.textAlign = 'left';
-		    textboxesContainer.appendChild(newTextbox);
+
+		    // Create a delete button
+		    var deleteButton = document.createElement('button');
+		    deleteButton.textContent = '×';//'x'//'−';//'—';
+		    deleteButton.type = 'button'; // Set button type to prevent form submission
+		    deleteButton.style.fontWeight = 'bold';
+		    deleteButton.style.color = 'red';
+		    deleteButton.style.backgroundColor = 'white';
+		    deleteButton.style.border = 'none';
+		    deleteButton.onclick = function() {
+		        // Remove the container when delete button is clicked
+		        textboxesContainer.removeChild(container);
+		    };
+
+		    // Append textbox and delete button to the container
+		    container.appendChild(newTextbox);
+		    container.appendChild(deleteButton);
+
+		    // Append container to the textboxes container
+		    textboxesContainer.appendChild(container);
+
 		    form.elements['num_textboxes6'].value = parseInt(numTextboxes) + 1;
 		}
-		function addTechnology() {
-			var gridContainer = document.getElementById('grid-container');
+
+		// function addTechnology() {
+		// 	var gridContainer = document.getElementById('grid-container');
+		//     gridContainer.innerHTML = ''; // Clear previous grid
+		//     document.getElementById('submitNeoButton').style.display = 'none'; 
+		//     var form = document.querySelector('form');
+		//     var numTechboxes = form.elements['num_technologies'].value;
+		//     var techboxesContainer = document.getElementById('technology-container');
+		//     var newTextbox = document.createElement('input');
+		//     newTextbox.type = 'text';
+		//     newTextbox.name = 'techbox[]';
+		//     newTextbox.value = 'Tech ' + (parseInt(numTechboxes) + 1) + ' ';
+		//     newTextbox.style.display = 'block'; // Display the new textbox on a new line
+		//     newTextbox.style.width = '280px';
+		//     newTextbox.style.textAlign = 'left';
+		//     techboxesContainer.appendChild(newTextbox);
+		//     form.elements['num_technologies'].value = parseInt(numTechboxes) + 1;
+		// }
+		function addTechnology(){
+		    var gridContainer = document.getElementById('grid-container');
 		    gridContainer.innerHTML = ''; // Clear previous grid
 		    document.getElementById('submitNeoButton').style.display = 'none'; 
 		    var form = document.querySelector('form');
 		    var numTechboxes = form.elements['num_technologies'].value;
 		    var techboxesContainer = document.getElementById('technology-container');
+		    
+   		    // Create a container for the textbox and delete button
+		    var container = document.createElement('div');
+		    container.style.display = 'flex'; // Set display to flex for positioning
+		    container.style.alignItems = 'center'; // Align items vertically
+
 		    var newTextbox = document.createElement('input');
 		    newTextbox.type = 'text';
 		    newTextbox.name = 'techbox[]';
 		    newTextbox.value = 'Tech ' + (parseInt(numTechboxes) + 1) + ' ';
-		    newTextbox.style.display = 'block'; // Display the new textbox on a new line
 		    newTextbox.style.width = '280px';
 		    newTextbox.style.textAlign = 'left';
-		    techboxesContainer.appendChild(newTextbox);
+
+		    // Create a delete button
+		    var deleteButton = document.createElement('button');
+		    deleteButton.textContent = '×';//'x'//'−';//'—';
+		    deleteButton.type = 'button'; // Set button type to prevent form submission
+		    deleteButton.style.fontWeight = 'bold';
+		    deleteButton.style.color = 'red';
+		    deleteButton.style.backgroundColor = 'white';
+		    deleteButton.style.border = 'none';
+		    deleteButton.onclick = function() {
+		        // Remove the container when delete button is clicked
+		        techboxesContainer.removeChild(container);
+		    };
+
+		    // Append textbox and delete button to the container
+		    container.appendChild(newTextbox);
+		    container.appendChild(deleteButton);
+
+		    techboxesContainer.appendChild(container);
 		    form.elements['num_technologies'].value = parseInt(numTechboxes) + 1;
 		}
 

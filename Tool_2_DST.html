@@ -151,17 +151,17 @@
 <body>
 	
     <form>
-    	<h4><b>Select Indicators</b></h4>
+    	<h4><b>Select Indicators </b></style></h4>
     	<table >
     		<tr style="vertical-align: top; border-bottom: 1px solid black;
             border-top: 1px solid black;">
     			<td  style="width: 235px; ">
 				    <div>
 				    	<h5>1. Economic Indicators</h5>
-				        <input type="checkbox" name="indicate[]" value="Capex" class="td1_text"><b>Construction Cost </b><br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(INR/MLD)<br/>
-				        <input type="checkbox" name="indicate[]" value="Opex" class="td1_text"><b>O&M Cost</b> <br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(INR/MLD/Year)<br/>
-				        <input type="checkbox" name="indicate[]" value="Revenue"class="td1_text"><b>Revenue Generation </b><br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(INR/MLD/Year)<br/>
-				        <input type="checkbox" name="indicate[]" value="LCC"class="td1_text"><b>Net Present Worth </b><br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(INR/MLD)<br/>
+				        <input type="checkbox" name="indicate[]" value="Capex" class="td1_text"><b>Construction Cost </b><br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(&#8377;/MLD)<br/>
+				        <input type="checkbox" name="indicate[]" value="Opex" class="td1_text"><b>O&M Cost</b> <br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(&#8377;/MLD/Year)<br/>
+				        <input type="checkbox" name="indicate[]" value="Revenue"class="td1_text"><b>Revenue Generation </b><br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(&#8377;/MLD/Year)<br/>
+				        <input type="checkbox" name="indicate[]" value="LCC"class="td1_text"><b>Net Present Worth </b><br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(&#8377;/MLD)<br/>
 				        <input type="hidden" name="num_textboxes" value="0" />
 				    </div>
 				    
@@ -203,8 +203,8 @@
 				<td style="width: 235px;">
 				    <div>
 				    	<h5>4. Social Indicators</h5>
-				    	<input type="checkbox" name="indicate[]" value="SocMachine"class="td1_text"><b>% Manpower to machine cost</b> (Percent)<br/>
-				        <input type="checkbox" name="indicate[]" value="SocUnskill"class="td1_text"><b>% Unskilled to skilled manpower</b> (Percent)<br/>
+				    	<input type="checkbox" name="indicate[]" value="SocMachine"class="td1_text"><b>Manpower to machine &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspcost</b> (Percent)<br/>
+				        <input type="checkbox" name="indicate[]" value="SocUnskill"class="td1_text"><b>Unskilled to skilled &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspmanpower</b> (Percent)<br/>
 				        <input type="checkbox" name="indicate[]" value="SocAccept"class="td1_text"><b>Acceptability</b><br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 100)<br/>
 				        <input type="checkbox" name="indicate[]" value="SocPart"class="td1_text"><b>Participation</b><br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 100)<br/>
 				        <input type="hidden" name="num_textboxes3" value="0" />
@@ -216,9 +216,11 @@
 				    </div>
 	    		</td>
 	    	</tr>
+	    </table>
+	    <table>
 			<tr style="vertical-align: top; border-bottom: 1px solid black;
             border-top: 1px solid black;">
-	    		<td>
+	    		<td style="width: 315px;">
 				    <div>
 				    	<h5>5. Resilience Indicators</h5>
 				        <input type="checkbox" name="indicate[]" value="R_reli"class="td1_text"><b>Reliability</b><br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Scale - 1 to 100)<br/>
@@ -233,15 +235,15 @@
 				        <a onclick="addTextbox4()" style="font-size: 20px; font-weight: bold; cursor: pointer;" >+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 				    </div>
 				</td>
-				<td >
+				<td style="width: 400px;">
 				    <div>
 				    	<h5>6. Technical Indicators</h5>
 				        <input type="checkbox" name="indicate[]" value="BOD"class="td1_text"><b>BOD removal efficiency</b> <br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Percent)<br/>
 				        <input type="checkbox" name="indicate[]" value="COD"class="td1_text"><b>COD removal efficiency</b><br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Percent)<br/>
 				        <input type="checkbox" name="indicate[]" value="Nitro"class="td1_text"><b>Nitrogen removal efficiency</b><br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Percent)<br/>
-				        <input type="checkbox" name="indicate[]" value="Phosph"class="td1_text"><b>Phosphorus removal efficiency</b> (Percent)<br/>
+				        <input type="checkbox" name="indicate[]" value="Phosph"class="td1_text"><b>Phosphorus removal efficiency</b> <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Percent)<br/>
 				        <input type="checkbox" name="indicate[]" value="Pathogens"class="td1_text"><b>Pathogen removal efficiency</b><br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Percent)<br/>
-				        <input type="checkbox" name="indicate[]" value="Em_cont"class="td1_text"><b>Ability of Emerging Contaminant removal</b><br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(Percent)<br/>
+				        <input type="checkbox" name="indicate[]" value="Em_cont"class="td1_text"><b>Ability of Emerging Contaminant <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspremoval</b> (Percent)<br/>
 				        <input type="checkbox" name="indicate[]" value="Lan_suit"class="td1_text"><b>Land Requirement</b><br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(m<sup>2</sup>/MLD)<br/>
 				        <input type="hidden" name="num_textboxes5" value="0" />
 				    </div>
@@ -251,9 +253,9 @@
 				        <a onclick="addTextbox5()" style="font-size: 20px; font-weight: bold; cursor: pointer;" >+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 				    </div>
 				</td>
-				<td colspan="2">
+				<td style="width: 355px;">
 				    <div>
-				    	<h5>Additional Indicators</h5>
+				    	<h5>7. Additional Indicators</h5>
 				    	<input type="hidden" name="num_textboxes6" value="0" />
 				    </div>
 				    
@@ -1321,6 +1323,7 @@
 		            valueInput.type = 'number';
 		            valueInput.value = wtmat[selectedScenario][n];
 		            valueInput.min = '0';
+		            valueInput.max = '100';
 		            valueInput.name = 'fmatrix[' + row + '][]';
 		        	valueInput.style.width = '75px';
 		            valueCell.appendChild(valueInput);
@@ -1335,6 +1338,7 @@
 		            textboxInput.type = 'number';
 		            textboxInput.value = '';
 		            textboxInput.min = '0';
+		            textboxInput.max = '100';
 		            textboxInput.name = 'fmatrix[' + row + '][]';
 		        	textboxInput.style.width = '75px';
 		            textboxCell.appendChild(textboxInput);
@@ -1450,6 +1454,12 @@
 			var weights = [];
 			for(var j = 0; j < maincol - 1; j++){
 				weights[j] = fmatrix[mainrow - 2][j + 1];
+			}
+
+			//weights print
+			var weights_print = [];
+			for(var j = 0; j < maincol - 1; j++){
+				weights_print[j] = fmatrix[mainrow - 2][j + 1];
 			}
 
 			//cost benefits
@@ -1662,6 +1672,137 @@
             resultTextElement.textContent = '';
             resultTextElement.style.fontSize = '14px';
             resultTextElement.style.textAlign='justify';
+            container.appendChild(resultTextElement);
+
+            var resultTextElement = document.createElement('p');
+            resultTextElement.textContent = 'INPUT';
+            resultTextElement.style.fontWeight = 'bold';
+            resultTextElement.style.marginBottom = '6px';
+            container.appendChild(resultTextElement);
+
+            var lineElement = document.createElement('hr');
+            lineElement.style.borderColor = 'black';
+            lineElement.style.borderWidth = '1px';
+            lineElement.style.borderStyle = 'solid';
+            lineElement.style.marginTop = "0";
+            lineElement.style.marginBottom = "0";
+            container.appendChild(lineElement);
+
+            var num_indi = t_indi_name.length;
+            var num_tech = t_techname.length;
+            var input_repeat = num_indi / 4;
+
+            var tableElement = document.createElement('table');
+
+            for (var x = 0; x < input_repeat; x++){
+            	//if(j % 4 == 0){
+		        var value1Row = document.createElement('tr');
+
+	            var value1LabelCell = document.createElement('td');
+	            value1LabelCell.textContent = 'Technology - Indicators';
+	            value1LabelCell.style.width='250 px';
+	            value1LabelCell.style.fontSize = '12px';
+	            value1LabelCell.style.fontWeight = 'bold';
+	            value1LabelCell.style.border = 'none';
+	            value1LabelCell.style.borderBottom = '1px solid black'; 
+	            value1Row.appendChild(value1LabelCell);
+	        	//}
+	        	for (var j = 0 + x * 4; j < 4 + x * 4; j++){
+		            var value1Cell = document.createElement('td');
+		            value1Cell.textContent = t_indi_name[j];
+		            value1Cell.style.width = '110px';
+		            value1Cell.style.fontWeight = 'bold';
+		            value1Cell.style.fontSize = '10px';
+		            value1Cell.style.border = 'none';
+		            value1Cell.style.borderBottom = '1px solid black' ;
+		            value1Row.appendChild(value1Cell);
+		            tableElement.appendChild(value1Row);
+	        	}
+	        	for (var k = 0; k < num_tech; k++){
+	        		var value1Row = document.createElement('tr');
+
+		            var value1LabelCell = document.createElement('td');
+		            value1LabelCell.textContent = t_techname[k];
+		            value1LabelCell.style.width='250 px';
+		            value1LabelCell.style.fontSize = '10px';
+		            //value1LabelCell.style.fontWeight = 'bold';
+		            value1LabelCell.style.border = 'none';
+		            value1LabelCell.style.borderBottom = '1px solid black'; 
+		            value1Row.appendChild(value1LabelCell);
+		            for (var j = 0 + x * 4; j < 4 + x * 4; j++){
+			            var value1Cell = document.createElement('td');
+			            value1Cell.textContent = decisionMatrix[k][j];
+			            value1Cell.style.width = '110px';
+			            value1Cell.style.fontSize = '10px';
+			            //value1Cell.style.fontWeight = 'bold';
+			            value1Cell.style.border = 'none';
+			            value1Cell.style.borderBottom = '1px solid black' ;
+			            value1Row.appendChild(value1Cell);
+			            tableElement.appendChild(value1Row);
+	        		}
+	        	}
+	        	var value1Row = document.createElement('tr');
+
+	            var value1LabelCell = document.createElement('td');
+	            value1LabelCell.textContent = 'Weights';
+	            value1LabelCell.style.width='250 px';
+	            value1LabelCell.style.fontSize = '10px';
+	            //value1LabelCell.style.fontWeight = 'bold';
+	            value1LabelCell.style.border = 'none';
+	            value1LabelCell.style.backgroundColor = 'pink';
+	            value1LabelCell.style.borderBottom = '1px solid black';
+
+	            value1Row.appendChild(value1LabelCell);
+	            for (var j = 0 + x * 4; j < 4 + x * 4; j++){
+		            var value1Cell = document.createElement('td');
+		            value1Cell.textContent = weights_print[j];
+		            value1Cell.style.width = '110px';
+		            value1Cell.style.fontSize = '10px';
+		            //value1Cell.style.fontWeight = 'bold';
+		            value1Cell.style.backgroundColor = 'pink';
+		            value1Cell.style.border = 'none';
+		            value1Cell.style.borderBottom = '1px solid black' ;
+		            value1Row.appendChild(value1Cell);
+		            tableElement.appendChild(value1Row);
+        		}
+        		var value1Row = document.createElement('tr');
+
+	            var value1LabelCell = document.createElement('td');
+	            value1LabelCell.textContent = '1-Cost 0-Benefit';
+	            value1LabelCell.style.width='250 px';
+	            value1LabelCell.style.fontSize = '10px';
+	            //value1LabelCell.style.fontWeight = 'bold';
+	            value1LabelCell.style.border = 'none';
+	            value1LabelCell.style.backgroundColor = 'lightgreen';
+	            value1LabelCell.style.borderBottom = '1px solid black';
+
+	            value1Row.appendChild(value1LabelCell);
+	            for (var j = 0 + x * 4; j < 4 + x * 4; j++){
+		            var value1Cell = document.createElement('td');
+		            value1Cell.textContent = costbenefits[j];
+		            value1Cell.style.width = '110px';
+		            value1Cell.style.fontSize = '10px';
+		            //value1Cell.style.fontWeight = 'bold';
+		            value1Cell.style.backgroundColor = 'lightgreen';
+		            value1Cell.style.border = 'none';
+		            value1Cell.style.borderBottom = '1px solid black' ;
+		            value1Row.appendChild(value1Cell);
+		            tableElement.appendChild(value1Row);
+        		}
+	        }	
+            
+          	container.appendChild(tableElement);
+            //------------------------------------------------------------output
+            var resultTextElement = document.createElement('p');
+            resultTextElement.textContent = '';
+            resultTextElement.style.fontWeight = 'bold';
+            resultTextElement.style.marginBottom = '6px';
+            container.appendChild(resultTextElement);
+
+            var resultTextElement = document.createElement('p');
+            resultTextElement.textContent = '';
+            resultTextElement.style.fontWeight = 'bold';
+            resultTextElement.style.marginBottom = '6px';
             container.appendChild(resultTextElement);
 
             var resultTextElement = document.createElement('p');

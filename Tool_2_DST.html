@@ -104,7 +104,9 @@
             }
         }
 
-
+        tr {
+            page-break-inside: avoid;
+        }
 
         table {
             border-collapse: collapse;
@@ -1658,7 +1660,7 @@
             // Create elements to display the header
             var headerElement = document.createElement('header');
             var spaces = Array(17).join('\u00A0');
-            headerElement.textContent = 'JalVishwa: Technology Assessment Report' + spaces + 'Page 1 of 1' + spaces + formattedDate;// + spaces + 'IIT Bombay';
+            headerElement.textContent = 'JalVishwa: Technology Assessment Report' + spaces + 'Part 1 of 2' + spaces + formattedDate;// + spaces + 'IIT Bombay';
             headerElement.style.marginTop = '4px';
            // headerElement.style.textAlign = 'center';
             headerElement.style.color='blue';
@@ -1793,6 +1795,32 @@
             
           	container.appendChild(tableElement);
             //------------------------------------------------------------output
+            
+          	var pageBreakElement = document.createElement('div');
+            pageBreakElement.style.pageBreakAfter = 'always';
+            container.appendChild(pageBreakElement);
+
+            var lineElement = document.createElement('hr');
+            lineElement.style.borderColor = 'red';
+            lineElement.style.borderWidth = '1px';
+            lineElement.style.borderStyle = 'solid';
+            lineElement.style.marginTop = "0";
+            lineElement.style.marginBottom = "0";
+            container.appendChild(lineElement);
+
+
+            var currentDate = new Date();
+            var formattedDate = currentDate.toLocaleDateString();
+            // Create elements to display the header
+            var headerElement = document.createElement('header');
+            var spaces = Array(17).join('\u00A0');
+            headerElement.textContent = 'JalVishwa: Technology Assessment Report' + spaces + 'Part 2 of 2' + spaces + formattedDate;// + spaces + 'IIT Bombay';
+            headerElement.style.marginTop = '4px';
+           // headerElement.style.textAlign = 'center';
+            headerElement.style.color='blue';
+            headerElement.style.fontWeight='bold';
+            container.appendChild(headerElement);
+
             var resultTextElement = document.createElement('p');
             resultTextElement.textContent = '';
             resultTextElement.style.fontWeight = 'bold';
